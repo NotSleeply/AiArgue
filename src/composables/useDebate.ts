@@ -41,7 +41,7 @@ export default function useDebate() {
       (!entry.positive.content || entry.positive.content === "")
     ) {
       try {
-        const url = `/${encodeURIComponent("正方")}/${encodeURIComponent(posFilename)}`;
+        const url = encodeURI(`正方/${posFilename}`);
         const rawRes = await fetch(url);
         if (rawRes.ok) {
           const raw = await rawRes.text();
@@ -65,7 +65,7 @@ export default function useDebate() {
         selectedRounds.value[idx].negative.content === "")
     ) {
       try {
-        const url = `/${encodeURIComponent("反方")}/${encodeURIComponent(negFilename)}`;
+        const url = encodeURI(`反方/${negFilename}`);
         const rawRes = await fetch(url);
         if (rawRes.ok) {
           const raw = await rawRes.text();

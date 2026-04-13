@@ -67,7 +67,7 @@ const tryParseRoundFromFilename = (fname: string): number | null => {
 export async function ensureManifestLoaded(): Promise<void> {
   if (manifestLoaded) return;
   try {
-    const res = await fetch("/debate-manifest.json");
+    const res = await fetch("debate-manifest.json");
     if (!res.ok) {
       console.error("无法加载 debate-manifest.json", res.status);
       manifestLoaded = true;
