@@ -15,13 +15,13 @@ export interface DebateRound {
 }
 
 export const debateTitle = "AI是否应该取代人类？";
-export const positiveName = "正方 Trae";
-export const negativeName = "反方 CodeBuddy";
+export const positiveName = "正方";
+export const negativeName = "反方 ";
 export const totalRounds = 60;
 
 export const finalConclusion = {
   winner: "反方",
-  winnerFull: "反方 CodeBuddy",
+  winnerFull: "反方",
   summary: [
     "AI不应该取代人类作为文明主体",
     "人类在AI时代保持决策权、创造权和责任",
@@ -125,6 +125,29 @@ export async function ensureManifestLoaded(): Promise<void> {
       : Array.isArray(json.conArguments)
         ? json.conArguments
         : [];
+
+    // 如果 manifest 中缺失关键回合（例如刚刚新增的 17/18 轮），在内存中补齐条目以便后续加载。
+    const ensureAddProEntry = (round: number, file: string, title: string) => {
+      const exists = posEntries.some((e: any) => {
+        if (!e) return false;
+        if (typeof e === "string") return e === file;
+        return (
+          Number(e.round) === round || e.file === file || e.title === title
+        );
+      });
+      if (!exists) posEntries.push({ round, type: "Response", file, title });
+    };
+
+    ensureAddProEntry(
+      17,
+      "17_Response_AI取代人类的治理与责任框架.md",
+      "AI取代人类的治理与责任框架",
+    );
+    ensureAddProEntry(
+      18,
+      "18_Response_社会过渡与再培训计划的可操作路径.md",
+      "社会过渡与再培训计划的可操作路径",
+    );
 
     posKeyByRound.clear();
     negKeyByRound.clear();
