@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { Argument } from '../data/debate'
+import type { Argument } from '../types/debate'
 import { renderMarkdown } from '../lib/markdown'
 
 const props = defineProps<{

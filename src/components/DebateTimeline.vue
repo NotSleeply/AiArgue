@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, watch, nextTick } from 'vue'
-import type { DebateRound } from '../data/debate'
+import type { DebateRound } from '../types/debate'
 
 const props = defineProps<{
   rounds: DebateRound[]

@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, watch } from 'vue'
-import { selectedRounds, debateTitle, positiveName, negativeName, totalRounds, finalConclusion, loadRoundContent, prefetchRound, ensureManifestLoaded } from './data/debate'
-// import leftAvatarUrl from './assets/left-avatar.svg?url'
-// import rightAvatarUrl from './assets/right-avatar.svg?url'
-import ArgumentCard from './components/ArgumentCard.vue'
+import { debateTitle, positiveName, negativeName, totalRounds, finalConclusion } from './data/debate'
+import useDebate from './composables/useDebate'
 import DebateTimeline from './components/DebateTimeline.vue'
 import FinalResult from './components/FinalResult.vue'
+import HeaderBar from './components/HeaderBar.vue'
+import DebateSide from './components/DebateSide.vue'
+import NavigationButtons from './components/NavigationButtons.vue'
+import ToggleContentButton from './components/ToggleContentButton.vue'
+import CharacterSilhouette from './components/CharacterSilhouette.vue'
 
 const currentRoundIndex = ref(0)
 const isPlaying = ref(false)
@@ -16,6 +19,8 @@ const activeSide = ref<'positive' | 'negative'>('positive')
 const activate = (side: 'positive' | 'negative') => {
   activeSide.value = side
 }
+
+const { selectedRounds, ensureManifestLoaded, loadRoundContent, prefetchRound } = useDebate()
 
 const currentRound = computed(() => selectedRounds.value[currentRoundIndex.value] || null)
 const progress = computed(() => ((currentRoundIndex.value + 1) / (selectedRounds.value.length || 1)) * 100)
@@ -108,114 +113,30 @@ watch(selectedRounds, (val) => {
 
 <template>
   <div class="min-h-screen bg-[#F3F4F6] text-black font-sans">
-    <!-- Header -->
-    <header class="sticky top-0 z-50 bg-white border-b-4 border-black font-bold">
-      <div class="max-w-7xl mx-auto px-4 py-4">
-        <div class="flex items-center justify-between">
-          <div>
-            <h1 class="text-2xl font-black uppercase tracking-tight text-black border-b-2 border-black inline-block">
-              ⚔️ AI 辩论赛
-            </h1>
-            <p class="text-black font-bold text-sm mt-1">{{ debateTitle }}</p>
-          </div>
-          <div class="flex items-center gap-4">
-            <span
-              class="text-black font-bold text-sm border-2 border-black px-2 py-1 rounded-none shadow-[2px_2px_0px_rgba(0,0,0,1)] bg-white">
-              第 {{ roundNumber }} 轮 / 共 {{ totalRounds }} 轮
-            </span>
-            <div class="flex gap-2">
-              <button @click="toggleAutoPlay"
-                class="px-4 py-2 border-2 border-black font-bold transition-all active:translate-y-1 active:shadow-none shadow-[4px_4px_0_black]"
-                :class="isPlaying
-                  ? 'bg-white text-black'
-                  : 'bg-[#A1F65E] text-black'">
-                {{ isPlaying ? '⏸ 暂停' : '▶ 播放' }}
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Progress bar -->
-        <div class="mt-4 h-4 bg-white border-2 border-black overflow-hidden flex shadow-[2px_2px_0_black]">
-          <div class="h-full bg-[#A1F65E] transition-all duration-500 border-r-2 border-black"
-            :style="{ width: `${progress}%` }"></div>
-        </div>
-      </div>
-    </header>
+    <HeaderBar :debateTitle="debateTitle" :roundNumber="roundNumber" :totalRounds="totalRounds" :isPlaying="isPlaying"
+      :toggleAutoPlay="toggleAutoPlay" :progress="progress" />
 
     <!-- Main content -->
     <main class="max-w-7xl mx-auto px-4 py-8">
       <!-- Debate content -->
       <div v-if="currentRound" class="relative">
-        <!-- 左侧人物（固定在边缘） -->
-        <div class="character left" :class="{ 'active': activeSide === 'positive' }" @click="activate('positive')">
-          <svg viewBox="0 0 200 400" preserveAspectRatio="none" fill="black">
-            <!-- Menacing silhouette facing right -->
-            <path
-              d="M-50,400 L120,400 C150,350 180,300 170,250 C160,200 120,180 100,150 C80,120 70,80 90,40 C100,20 80,-10 30,-20 L-50,-20 Z" />
-          </svg>
-        </div>
-        <!-- 右侧人物（固定在边缘） -->
-        <div class="character right" :class="{ 'active': activeSide === 'negative' }" @click="activate('negative')">
-          <svg viewBox="0 0 200 400" preserveAspectRatio="none" fill="black">
-            <!-- Menacing silhouette facing left -->
-            <path
-              d="M250,400 L80,400 C50,350 20,300 30,250 C40,200 80,180 100,150 C120,120 130,80 110,40 C100,20 120,-10 170,-20 L250,-20 Z" />
-          </svg>
-        </div>
+        <CharacterSilhouette side="positive" :active="activeSide === 'positive'" @click="activate('positive')" />
+        <CharacterSilhouette side="negative" :active="activeSide === 'negative'" @click="activate('negative')" />
 
         <div class="flex flex-col md:flex-row gap-8 mb-8 relative sides-container">
-          <!-- Positive side -->
-          <div class="space-y-4 side-wrap positive-wrap relative" :class="{ 'speaking': activeSide === 'positive' }"
-            @click="activate('positive')">
-            <div class="flex items-center gap-3 mb-4 border-2 border-black p-2 bg-white shadow-[4px_4px_0_black]">
-              <span class="text-3xl">🔵</span>
-              <div>
-                <h2 class="text-xl font-black text-black uppercase">{{ positiveName }}</h2>
-                <p class="text-sm font-bold text-black border-t-2 border-black pt-1 mt-1">AI应该取代人类</p>
-              </div>
-            </div>
-            <ArgumentCard :argument="currentRound.positive" :round="currentRound.round" side="positive"
-              :expanded="showFullContent" />
-          </div>
-
-          <!-- Negative side -->
-          <div class="space-y-4 side-wrap negative-wrap relative" :class="{ 'speaking': activeSide === 'negative' }"
-            @click="activate('negative')">
-            <div class="flex items-center gap-3 mb-4 border-2 border-black p-2 bg-white shadow-[4px_4px_0_black]">
-              <span class="text-3xl">🔴</span>
-              <div>
-                <h2 class="text-xl font-black text-black uppercase">{{ negativeName }}</h2>
-                <p class="text-sm font-bold text-black border-t-2 border-black pt-1 mt-1">AI不应该取代人类</p>
-              </div>
-            </div>
-            <ArgumentCard :argument="currentRound.negative" :round="currentRound.round" side="negative"
-              :expanded="showFullContent" />
-          </div>
-          <!-- Navigation -->
+          <DebateSide side="positive" :name="positiveName" tagline="AI应该取代人类" :argument="currentRound.positive"
+            :round="currentRound.round" :isSpeaking="activeSide === 'positive'" :activate="activate"
+            :expanded="showFullContent" />
+          <DebateSide side="negative" :name="negativeName" tagline="AI不应该取代人类" :argument="currentRound.negative"
+            :round="currentRound.round" :isSpeaking="activeSide === 'negative'" :activate="activate"
+            :expanded="showFullContent" />
         </div>
       </div>
 
-      <!-- Fixed Navigation Buttons (Side) -->
-      <button @click="prevRound" :disabled="currentRoundIndex === 0"
-        class="fixed left-2 md:left-6 top-1/2 -translate-y-1/2 z-50 px-2 py-4 md:px-4 md:py-8 text-lg md:text-2xl font-black bg-white border-4 border-black hover:bg-[#A1F65E] disabled:opacity-50 disabled:hover:bg-white transition-all shadow-[4px_4px_0_black] md:shadow-[8px_8px_0_black] active:shadow-none active:translate-y-[calc(-50%+4px)] active:translate-x-1"
-        style="writing-mode: vertical-lr;">
-        上一轮
-      </button>
+      <NavigationButtons :onPrev="prevRound" :onNext="nextRound" :disabledPrev="currentRoundIndex === 0"
+        :disabledNext="currentRoundIndex === selectedRounds.length - 1" />
 
-      <button @click="nextRound" :disabled="currentRoundIndex === selectedRounds.length - 1"
-        class="fixed right-2 md:right-6 top-1/2 -translate-y-1/2 z-50 px-2 py-4 md:px-4 md:py-8 text-lg md:text-2xl font-black bg-white border-4 border-black hover:bg-[#A1F65E] disabled:opacity-50 disabled:hover:bg-white transition-all shadow-[4px_4px_0_black] md:shadow-[8px_8px_0_black] active:shadow-none active:translate-y-[calc(-50%+4px)] active:translate-x-1"
-        style="writing-mode: vertical-lr;">
-        下一轮
-      </button>
-
-      <!-- Toggle Content Button (Centered Bottom) -->
-      <div class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50">
-        <button @click="toggleContent"
-          class="px-8 py-4 text-xl font-black bg-[#A1F65E] border-4 border-black hover:bg-white transition-all shadow-[8px_8px_0_black] active:shadow-none active:translate-y-2 active:translate-x-2">
-          {{ showFullContent ? '收起详情' : '展开详情' }}
-        </button>
-      </div>
+      <ToggleContentButton :expanded="showFullContent" :toggle="toggleContent" />
 
       <!-- Final result -->
       <FinalResult v-if="currentRoundIndex === selectedRounds.length - 1" />
