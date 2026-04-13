@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import type { Argument } from '../data/debate'
+import MarkdownIt from 'markdown-it'
 
 const props = defineProps<{
   argument: Argument
@@ -21,21 +22,10 @@ const headerBg = computed(() => {
   return props.side === 'positive' ? 'bg-[#A1F65E]' : 'bg-[#A1F65E]'
 })
 
-// 简单的 Markdown 解析。注意：移除了对 '<' 的全量转义，以允许渲染 Markdown 中的内嵌 HTML（本地项目内使用）
+const md = new MarkdownIt({ html: true })
+
 const formatContent = (content: string): string => {
-  return content
-    .replace(/^### (.+)$/gm, '<h3 class="text-lg font-bold mt-4 mb-2 text-black">$1</h3>')
-    .replace(/^## (.+)$/gm, '<h2 class="text-xl font-bold mt-6 mb-3 text-black">$1</h2>')
-    .replace(/^#### (.+)$/gm, '<h4 class="text-base font-bold mt-3 mb-2 text-black">$1</h4>')
-    .replace(/^- (.+)$/gm, '<li class="ml-4 text-black list-disc">$1</li>')
-    .replace(/^\d+\. (.+)$/gm, '<li class="ml-4 text-black list-decimal">$1</li>')
-    .replace(/\*\*(.+?)\*\*/g, '<strong class="text-black font-black">$1</strong>')
-    .replace(/`(.+?)`/g, '<code class="bg-[#A1F65E] px-1 border border-black rounded-none text-black font-bold">$1</code>')
-    // 保留引用前缀处理，但不全量转义 '<'
-    .replace(/^>/gm, '<blockquote class="pl-4 border-l-4 border-black text-black font-medium italic">')
-    .split('\n\n')
-    .map(p => p.startsWith('<') ? p : `<p class="text-black font-medium mb-2">${p}</p>`)
-    .join('')
+  return md.render(content)
 }
 </script>
 
@@ -60,7 +50,7 @@ const formatContent = (content: string): string => {
 
     <!-- Content -->
     <div class="px-6 py-4">
-      <div class="prose prose-sm max-w-none" v-html="formatContent(argument.content)"></div>
+      <div class="prose-container max-w-none" v-html="formatContent(argument.content)"></div>
     </div>
 
     <!-- Footer -->
@@ -72,3 +62,49 @@ const formatContent = (content: string): string => {
     </div>
   </div>
 </template>
+
+<style>
+.prose-container {
+  font-family: sans-serif;
+  color: black;
+  font-weight: 500;
+  line-height: 1.6;
+}
+.prose-container h1, .prose-container h2, .prose-container h3, .prose-container h4 {
+  font-weight: 900;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.prose-container h2 { font-size: 1.5rem; border-bottom: 2px solid black; padding-bottom: 0.25rem; }
+.prose-container h3 { font-size: 1.25rem; }
+.prose-container p { margin-bottom: 1rem; }
+.prose-container ul { list-style-type: disc; margin-left: 1.5rem; margin-bottom: 1rem; }
+.prose-container ol { list-style-type: decimal; margin-left: 1.5rem; margin-bottom: 1rem; }
+.prose-container blockquote {
+  border-left: 4px solid black;
+  padding-left: 1rem;
+  margin-left: 0;
+  margin-right: 0;
+  font-style: italic;
+}
+.prose-container code {
+  background: #A1F65E;
+  padding: 0.125rem 0.25rem;
+  border: 2px solid black;
+  font-weight: 700;
+}
+.prose-container table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+  border: 4px solid black;
+}
+.prose-container th, .prose-container td {
+  border: 2px solid black;
+  padding: 0.5rem;
+}
+.prose-container th {
+  background: #F3F4F6;
+  font-weight: 900;
+}
+</style>

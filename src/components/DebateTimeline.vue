@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import { ref, watch, nextTick } from 'vue'
 import type { DebateRound } from '../data/debate'
 
-defineProps<{
+const props = defineProps<{
   rounds: DebateRound[]
   currentIndex: number
 }>()
@@ -9,48 +10,56 @@ defineProps<{
 const emit = defineEmits<{
   select: [index: number]
 }>()
+
+const timelineScroll = ref<HTMLElement | null>(null)
+
+watch(() => props.currentIndex, async (newVal) => {
+  await nextTick()
+  if (timelineScroll.value) {
+    const parent = timelineScroll.value
+    const children = parent.querySelectorAll('button')
+    const activeChild = children[newVal]
+    if (activeChild) {
+      const scrollLeft = activeChild.offsetLeft - parent.clientWidth / 2 + activeChild.clientWidth / 2
+      parent.scrollTo({ left: scrollLeft, behavior: 'smooth' })
+    }
+  }
+})
 </script>
 
 <template>
-  <div class="relative">
-    <div class="flex items-center justify-between overflow-x-auto pb-4 gap-2">
-      <button v-for="(round, index) in rounds" :key="round.round" @click="emit('select', index)"
-        class="relative flex-shrink-0 group">
-        <!-- 连接线 -->
-        <div v-if="index < rounds.length - 1" class="absolute top-4 left-full w-4 md:w-8 h-0.5 -translate-y-1/2 z-0"
-          :class="index < currentIndex ? 'bg-purple-500' : 'bg-slate-700'"></div>
-
-        <!-- 节点 -->
-        <div
-          class="relative w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300 z-10"
+  <!-- 父容器负责外边框和阴影 -->
+  <div class="relative w-full border-4 border-black bg-white shadow-[8px_8px_0_black]">
+    <!-- 内部容器负责滚动 -->
+    <div class="overflow-x-auto w-full p-4 custom-scrollbar" ref="timelineScroll">
+      <div class="flex items-center gap-6 w-max px-2 py-4">
+        <button v-for="(round, index) in rounds" :key="round.round" @click="emit('select', index)"
+          class="relative flex-shrink-0 font-black text-xl w-16 h-16 flex items-center justify-center border-4 border-black transition-all active:translate-y-1 active:shadow-none"
           :class="[
             index === currentIndex
-              ? 'bg-purple-500 text-white scale-125 shadow-lg shadow-purple-500/50'
+              ? 'bg-[#A1F65E] text-black shadow-[4px_4px_0_black] scale-110 z-10' 
               : index < currentIndex
-                ? 'bg-green-500/20 text-green-400 border-2 border-green-500/50'
-                : 'bg-slate-700 text-slate-400 border-2 border-slate-600'
+                ? 'bg-black text-white shadow-[4px_4px_0_black]'
+                : 'bg-white text-black shadow-[4px_4px_0_black] hover:bg-gray-200'
           ]">
-          <span v-if="index < currentIndex">OK</span>
-          <span v-else>{{ round.round }}</span>
-        </div>
-
-        <!-- 标签 -->
-        <div class="absolute top-10 left-1/2 -translate-x-1/2 whitespace-nowrap">
-          <span class="text-xs transition-all duration-300"
-            :class="index === currentIndex ? 'text-purple-400 font-medium' : 'text-slate-500'">
-            第{{ round.round }}轮
-          </span>
-        </div>
-      </button>
-    </div>
-
-    <!-- 进度指示器 -->
-    <div class="flex justify-center gap-1 mt-12">
-      <div v-for="(round, index) in rounds" :key="'dot-' + round.round"
-        class="w-2 h-2 rounded-full transition-all duration-300" :class="[
-          index === currentIndex ? 'bg-purple-500 w-4' : '',
-          index < currentIndex ? 'bg-green-500' : 'bg-slate-600'
-        ]"></div>
+          {{ round.round }}
+        </button>
+      </div>
     </div>
   </div>
 </template>
+
+<style scoped>
+.custom-scrollbar::-webkit-scrollbar {
+  height: 16px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: white;
+  border-top: 4px solid black;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: black;
+  border-left: 2px solid white;
+  border-right: 2px solid white;
+}
+</style>

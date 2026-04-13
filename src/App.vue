@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, watch } from 'vue'
 import { selectedRounds, debateTitle, positiveName, negativeName, totalRounds, finalConclusion, loadRoundContent, prefetchRound, ensureManifestLoaded } from './data/debate'
-import leftAvatarUrl from './assets/left-avatar.svg?url'
-import rightAvatarUrl from './assets/right-avatar.svg?url'
+// import leftAvatarUrl from './assets/left-avatar.svg?url'
+// import rightAvatarUrl from './assets/right-avatar.svg?url'
 import ArgumentCard from './components/ArgumentCard.vue'
 import DebateTimeline from './components/DebateTimeline.vue'
 import FinalResult from './components/FinalResult.vue'
@@ -145,20 +145,21 @@ watch(selectedRounds, (val) => {
 
     <!-- Main content -->
     <main class="max-w-7xl mx-auto px-4 py-8">
-      <!-- Round selector -->
-      <div class="mb-8">
-        <DebateTimeline :rounds="selectedRounds" :current-index="currentRoundIndex" @select="goToRound" />
-      </div>
-
       <!-- Debate content -->
       <div v-if="currentRound" class="relative">
         <!-- 左侧人物（固定在边缘） -->
         <div class="character left" :class="{ 'active': activeSide === 'positive' }" @click="activate('positive')">
-          <img :src="leftAvatarUrl" alt="正方" class="w-full h-full object-cover" />
+          <svg viewBox="0 0 200 400" preserveAspectRatio="none" fill="black">
+            <!-- Menacing silhouette facing right -->
+            <path d="M-50,400 L120,400 C150,350 180,300 170,250 C160,200 120,180 100,150 C80,120 70,80 90,40 C100,20 80,-10 30,-20 L-50,-20 Z"/>
+          </svg>
         </div>
         <!-- 右侧人物（固定在边缘） -->
         <div class="character right" :class="{ 'active': activeSide === 'negative' }" @click="activate('negative')">
-          <img :src="rightAvatarUrl" alt="反方" class="w-full h-full object-cover" />
+          <svg viewBox="0 0 200 400" preserveAspectRatio="none" fill="black">
+            <!-- Menacing silhouette facing left -->
+            <path d="M250,400 L80,400 C50,350 20,300 30,250 C40,200 80,180 100,150 C120,120 130,80 110,40 C100,20 120,-10 170,-20 L250,-20 Z"/>
+          </svg>
         </div>
 
         <div class="flex flex-col md:flex-row gap-8 mb-8 relative sides-container">
@@ -193,32 +194,45 @@ watch(selectedRounds, (val) => {
         </div>
       </div>
 
-      <!-- Navigation -->
-      <div class="flex items-center justify-between mb-8">
-        <button @click="prevRound" :disabled="currentRoundIndex === 0"
-          class="px-6 py-3 font-black bg-white border-2 border-black hover:bg-[#F3F4F6] disabled:opacity-50 transition-all flex items-center gap-2 shadow-[4px_4px_0_black] active:shadow-none active:translate-y-1">
-          ← 上一轮
-        </button>
+      <!-- Fixed Navigation Buttons (Side) -->
+      <button @click="prevRound" :disabled="currentRoundIndex === 0"
+        class="fixed left-2 md:left-6 top-1/2 -translate-y-1/2 z-50 px-2 py-4 md:px-4 md:py-8 text-lg md:text-2xl font-black bg-white border-4 border-black hover:bg-[#A1F65E] disabled:opacity-50 disabled:hover:bg-white transition-all shadow-[4px_4px_0_black] md:shadow-[8px_8px_0_black] active:shadow-none active:translate-y-[calc(-50%+4px)] active:translate-x-1"
+        style="writing-mode: vertical-lr;">
+        上一轮
+      </button>
 
+      <button @click="nextRound" :disabled="currentRoundIndex === selectedRounds.length - 1"
+        class="fixed right-2 md:right-6 top-1/2 -translate-y-1/2 z-50 px-2 py-4 md:px-4 md:py-8 text-lg md:text-2xl font-black bg-white border-4 border-black hover:bg-[#A1F65E] disabled:opacity-50 disabled:hover:bg-white transition-all shadow-[4px_4px_0_black] md:shadow-[8px_8px_0_black] active:shadow-none active:translate-y-[calc(-50%+4px)] active:translate-x-1"
+        style="writing-mode: vertical-lr;">
+        下一轮
+      </button>
+
+      <!-- Toggle Content Button (Centered Bottom) -->
+      <div class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50">
         <button @click="toggleContent"
-          class="px-6 py-3 font-black bg-[#A1F65E] border-2 border-black hover:bg-white transition-all shadow-[4px_4px_0_black] active:shadow-none active:translate-y-1">
+          class="px-8 py-4 text-xl font-black bg-[#A1F65E] border-4 border-black hover:bg-white transition-all shadow-[8px_8px_0_black] active:shadow-none active:translate-y-2 active:translate-x-2">
           {{ showFullContent ? '收起详情' : '展开详情' }}
-        </button>
-
-        <button @click="nextRound" :disabled="currentRoundIndex === selectedRounds.length - 1"
-          class="px-6 py-3 font-black bg-white border-2 border-black hover:bg-[#F3F4F6] disabled:opacity-50 transition-all flex items-center gap-2 shadow-[4px_4px_0_black] active:shadow-none active:translate-y-1">
-          下一轮 →
         </button>
       </div>
 
       <!-- Final result -->
-      <FinalResult />
+      <FinalResult v-if="currentRoundIndex === selectedRounds.length - 1" />
+
+      <!-- Timeline at Bottom -->
+      <div class="border-t-4 border-black pt-8 mt-12 mb-24">
+        <DebateTimeline :rounds="selectedRounds" :current-index="currentRoundIndex" @select="goToRound" />
+      </div>
     </main>
 
     <!-- Footer -->
     <footer class="border-t-4 border-black py-8 mt-12 bg-white">
       <div class="max-w-7xl mx-auto px-4 text-center text-black font-bold text-sm">
-        <p>⚔️ AI 辩论赛 | 60轮精彩辩论 | 最终结论：{{ finalConclusion.winner }}获胜</p>
+        <template v-if="currentRoundIndex === selectedRounds.length - 1">
+          <p>⚔️ AI 辩论赛 | {{ totalRounds }} 轮精彩辩论 | 最终结论：{{ finalConclusion.winner }}获胜</p>
+        </template>
+        <template v-else>
+          <p>⚔️ AI 辩论赛 | 正在进行中...</p>
+        </template>
         <p class="mt-2 text-black/60">Powered by AI vs AI</p>
       </div>
     </footer>
@@ -229,38 +243,45 @@ watch(selectedRounds, (val) => {
 /* 角色与语框动态样式 */
 .character {
   position: fixed;
-  top: 220px;
-  width: 112px;
-  height: 112px;
+  top: 0;
+  height: 100vh;
+  width: 400px;
   transition: transform 450ms cubic-bezier(.2, .9, .2, 1), right 450ms, left 450ms;
-  z-index: 60;
-  border: 4px solid black;
-  background: white;
-  border-radius: 50%;
-  box-shadow: 4px 4px 0 black;
-  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+  filter: drop-shadow(15px 15px 0px rgba(0,0,0,0.8));
+  opacity: 0.3;
 }
 
-.character img {
+.character svg {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
 .character.left {
-  left: -56px;
+  left: -200px;
+  transform-origin: left center;
 }
 
 .character.right {
-  right: -56px;
+  right: -200px;
+  transform-origin: right center;
+}
+
+.character.active {
+  opacity: 0.8;
+  z-index: 10;
 }
 
 .character.active.left {
-  transform: translateX(180px) scale(1.1);
+  transform: translateX(100px) scale(1.1);
+  filter: drop-shadow(25px 25px 0px rgba(0,0,0,1));
 }
 
 .character.active.right {
-  transform: translateX(-180px) scale(1.1);
+  transform: translateX(-100px) scale(1.1);
+  filter: drop-shadow(-25px 25px 0px rgba(0,0,0,1));
 }
 
 /* Flex layout logic for width management */
