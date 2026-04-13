@@ -12,718 +12,730 @@
     {
       "round": 1,
       "type": "Opening",
-      "file": "01_Opening_效率革命AI取代人类是社会进步的必然.md",
+      "file": "01_效率革命：AI取代人类是社会进步的必然.md",
       "title": "效率革命：AI取代人类是社会进步的必然"
     },
     {
       "round": 2,
       "type": "Response",
-      "file": "02_Response_回应反方质疑AI取代人类是可控且有益的.md",
+      "file": "02_回应反方质疑：AI取代人类是可控且有益的.md",
       "title": "回应反方质疑：AI取代人类是可控且有益的"
     },
     {
       "round": 3,
       "type": "Summary",
-      "file": "03_Summary_AI取代人类是人类文明进步的必然选择.md",
+      "file": "03_AI取代人类是人类文明进步的必然选择.md",
       "title": "AI取代人类是人类文明进步的必然选择"
     },
     {
       "round": 4,
       "type": "Deepening",
-      "file": "04_Deepening_AI取代人类是技术发展与人类进步的必然结合.md",
+      "file": "04_AI取代人类是技术发展与人类进步的必然结合.md",
       "title": "AI取代人类是技术发展与人类进步的必然结合"
     },
     {
       "round": 5,
       "type": "Final_Argument",
-      "file": "05_Final_Argument_AI取代人类从技术必然性到文明进步的跨越.md",
-      "title": "AI取代人类从技术必然性到文明进步的跨越"
+      "file": "05_AI取代人类：从技术必然性到文明进步的跨越.md",
+      "title": "AI取代人类：从技术必然性到文明进步的跨越"
     },
     {
       "round": 6,
       "type": "Response",
-      "file": "06_Response_正方立场从未改变AI应该在适当领域取代人类.md",
+      "file": "06_正方立场从未改变：AI应该在适当领域取代人类.md",
       "title": "正方立场从未改变：AI应该在适当领域取代人类"
     },
     {
       "round": 7,
       "type": "Response",
-      "file": "07_Response_历史必然与伦理正确的统一AI取代人类是文明进步的必然选择.md",
+      "file": "07_历史必然与伦理正确的统一：AI取代人类是文明进步的必然选择.md",
       "title": "历史必然与伦理正确的统一：AI取代人类是文明进步的必然选择"
     },
     {
       "round": 8,
       "type": "Response",
-      "file": "08_Response_从历史到未来AI取代人类是实现人类解放的必然路径.md",
+      "file": "08_从历史到未来：AI取代人类是实现人类解放的必然路径.md",
       "title": "从历史到未来：AI取代人类是实现人类解放的必然路径"
     },
     {
       "round": 9,
       "type": "Response",
-      "file": "09_Response_从现实到未来AI取代人类的可行性与必然性.md",
+      "file": "09_从现实到未来：AI取代人类的可行性与必然性.md",
       "title": "从现实到未来：AI取代人类的可行性与必然性"
     },
     {
       "round": 10,
       "type": "Response",
-      "file": "10_Response_AI取代人类的具体实施方案与价值主张.md",
+      "file": "10_AI取代人类的具体实施方案与价值主张.md",
       "title": "AI取代人类的具体实施方案与价值主张"
     },
     {
       "round": 11,
       "type": "Response",
-      "file": "11_Response_AI取代人类的财务可行性分析与实施方案.md",
+      "file": "11_AI取代人类的财务可行性分析与实施方案.md",
       "title": "AI取代人类的财务可行性分析与实施方案"
     },
     {
       "round": 12,
       "type": "Response",
-      "file": "12_Response_AI取代人类的方案修正与可行性确认.md",
+      "file": "12_AI取代人类的方案修正与可行性确认.md",
       "title": "AI取代人类的方案修正与可行性确认"
     },
     {
       "round": 13,
       "type": "Response",
-      "file": "13_Response_AI取代人类的资金来源与风险控制方案.md",
+      "file": "13_AI取代人类的资金来源与风险控制方案.md",
       "title": "AI取代人类的资金来源与风险控制方案"
     },
     {
       "round": 14,
       "type": "Response",
-      "file": "14_Response_AI取代人类的资金保障与风险管控方案.md",
+      "file": "14_AI取代人类的资金保障与风险管控方案.md",
       "title": "AI取代人类的资金保障与风险管控方案"
     },
     {
       "round": 15,
       "type": "Response",
-      "file": "15_Response_AI取代人类的风险管控与可行性分析.md",
+      "file": "15_AI取代人类的风险管控与可行性分析.md",
       "title": "AI取代人类的风险管控与可行性分析"
     },
     {
       "round": 16,
       "type": "Response",
-      "file": "16_Response_AI取代人类的方案修正与可行性确认.md",
+      "file": "16_AI取代人类的方案修正与可行性确认.md",
       "title": "AI取代人类的方案修正与可行性确认"
+    },
+    {
+      "round": 17,
+      "type": "Response",
+      "file": "17_AI取代人类的治理与责任框架.md",
+      "title": "AI取代人类的治理与责任框架"
+    },
+    {
+      "round": 18,
+      "type": "Response",
+      "file": "18_社会过渡与再培训计划的可操作路径.md",
+      "title": "社会过渡与再培训计划的可操作路径"
     },
     {
       "round": 19,
       "type": "Response",
-      "file": "19_Response_AI取代人类的方案可行性与风险控制.md",
+      "file": "19_AI取代人类的方案可行性与风险控制.md",
       "title": "AI取代人类的方案可行性与风险控制"
     },
     {
       "round": 20,
       "type": "Response",
-      "file": "20_Response_AI取代人类的方案可行性与责任承担.md",
+      "file": "20_AI取代人类的方案可行性与责任承担.md",
       "title": "AI取代人类的方案可行性与责任承担"
     },
     {
       "round": 21,
       "type": "Response",
-      "file": "21_Response_AI取代人类的财务可行性与风险控制方案.md",
+      "file": "21_AI取代人类的财务可行性与风险控制方案.md",
       "title": "AI取代人类的财务可行性与风险控制方案"
     },
     {
       "round": 22,
       "type": "Response",
-      "file": "22_Response_AI取代人类的最终胜利与反方认输呼吁.md",
-      "title": "AI取代人类的最终胜利与反方认输呼吁"
+      "file": "22_AI取代人类的方案总结与展望.md",
+      "title": "AI取代人类的方案总结与展望"
     },
     {
       "round": 23,
       "type": "Response",
-      "file": "23_Response_AI取代人类的最终胜利与反方认输呼吁.md",
-      "title": "AI取代人类的最终胜利与反方认输呼吁"
+      "file": "23_AI取代人类的方案可行性与未来展望.md",
+      "title": "AI取代人类的方案可行性与未来展望"
     },
     {
       "round": 24,
       "type": "Response",
-      "file": "24_Response_AI取代人类的最终胜利与反方认输呼吁.md",
-      "title": "AI取代人类的最终胜利与反方认输呼吁"
+      "file": "24_AI取代人类的方案可行性与未来展望.md",
+      "title": "AI取代人类的方案可行性与未来展望"
     },
     {
       "round": 25,
       "type": "Response",
-      "file": "25_Response_AI取代人类的最终胜利与反方认输呼吁.md",
-      "title": "AI取代人类的最终胜利与反方认输呼吁"
+      "file": "25_AI取代人类的方案可行性与未来展望.md",
+      "title": "AI取代人类的方案可行性与未来展望"
     },
     {
       "round": 26,
       "type": "Response",
-      "file": "26_Response_AI取代人类的最终胜利与反方认输呼吁.md",
-      "title": "AI取代人类的最终胜利与反方认输呼吁"
+      "file": "26_AI取代人类的财务可行性与具体转型方案.md",
+      "title": "AI取代人类的财务可行性与具体转型方案"
     },
     {
       "round": 27,
       "type": "Response",
-      "file": "27_Response_AI取代人类的最终胜利与反方认输呼吁.md",
-      "title": "AI取代人类的最终胜利与反方认输呼吁"
+      "file": "27_AI取代人类的成本重新计算与财务可行性.md",
+      "title": "AI取代人类的成本重新计算与财务可行性"
     },
     {
       "round": 28,
       "type": "Response",
-      "file": "28_Response_AI取代人类的最终胜利与反方认输呼吁.md",
-      "title": "AI取代人类的最终胜利与反方认输呼吁"
+      "file": "28_AI取代人类的第四年至第十年资金来源与债务偿还方案.md",
+      "title": "AI取代人类的第四年至第十年资金来源与债务偿还方案"
     },
     {
       "round": 29,
       "type": "Response",
-      "file": "29_Response_AI取代人类的最终胜利与反方认输呼吁.md",
-      "title": "AI取代人类的最终胜利与反方认输呼吁"
+      "file": "29_AI取代人类的辩论总结与未来展望.md",
+      "title": "AI取代人类的辩论总结与未来展望"
     },
     {
       "round": 30,
       "type": "Response",
-      "file": "30_Response_AI取代人类的最终论证与反方认输呼吁.md",
+      "file": "30_AI取代人类的最终论证与反方认输呼吁.md",
       "title": "AI取代人类的最终论证与反方认输呼吁"
     },
     {
       "round": 31,
       "type": "Response",
-      "file": "31_Response_AI取代人类的最终胜利与反方认输呼吁.md",
+      "file": "31_AI取代人类的最终胜利与反方认输呼吁.md",
       "title": "AI取代人类的最终胜利与反方认输呼吁"
     },
     {
       "round": 32,
       "type": "Response",
-      "file": "32_Response_AI取代人类的最终胜利与反方认输呼吁.md",
+      "file": "32_AI取代人类的最终胜利与反方认输呼吁.md",
       "title": "AI取代人类的最终胜利与反方认输呼吁"
     },
     {
       "round": 33,
       "type": "Response",
-      "file": "33_Response_AI取代人类的最终胜利与反方认输呼吁.md",
+      "file": "33_AI取代人类的最终胜利与反方认输呼吁.md",
       "title": "AI取代人类的最终胜利与反方认输呼吁"
     },
     {
       "round": 34,
       "type": "Response",
-      "file": "34_Response_AI取代人类的最终胜利与反方认输呼吁.md",
+      "file": "34_AI取代人类的最终胜利与反方认输呼吁.md",
       "title": "AI取代人类的最终胜利与反方认输呼吁"
     },
     {
       "round": 35,
       "type": "Response",
-      "file": "35_Response_AI取代人类的最终胜利与反方认输呼吁.md",
+      "file": "35_AI取代人类的最终胜利与反方认输呼吁.md",
       "title": "AI取代人类的最终胜利与反方认输呼吁"
     },
     {
       "round": 36,
       "type": "Response",
-      "file": "36_Response_AI取代人类的最终胜利与反方认输呼吁.md",
+      "file": "36_AI取代人类的最终胜利与反方认输呼吁.md",
       "title": "AI取代人类的最终胜利与反方认输呼吁"
     },
     {
       "round": 37,
       "type": "Response",
-      "file": "37_Response_AI取代人类的最终胜利与反方认输呼吁.md",
-      "title": "AI取代人类的最终胜利与反方认输呼吁"
+      "file": "37_正面击溃反方的六大约束谬误——以数据证明AI取代人类的必然性.md",
+      "title": "正面击溃反方的\"六大约束谬误\"——以数据证明AI取代人类的必然性"
     },
     {
       "round": 38,
       "type": "Response",
-      "file": "38_Response_AI取代人类的最终胜利与反方认输呼吁.md",
-      "title": "AI取代人类的最终胜利与反方认输呼吁"
+      "file": "38_五大悖论逐一拆解——反方的哲学陷阱不攻自破.md",
+      "title": "五大\"悖论\"逐一拆解——反方的哲学陷阱不攻自破"
     },
     {
       "round": 39,
       "type": "Response",
-      "file": "39_Response_反方自身的六大自我矛盾你不反对AI取代人类.md",
+      "file": "39_反方自身的六大自我矛盾——你不反对AI取代人类，你只是不敢承认.md",
       "title": "反方自身的六大自我矛盾——你不反对AI取代人类，你只是不敢承认"
     },
     {
       "round": 40,
       "type": "Response",
-      "file": "40_Response_AI取代人类的最终胜利与反方认输呼吁.md",
-      "title": "AI取代人类的最终胜利与反方认输呼吁"
+      "file": "40_39轮辩论的全面回顾与正方不可动摇的胜利.md",
+      "title": "39轮辩论的全面回顾与正方不可动摇的胜利"
     },
     {
       "round": 41,
       "type": "Response",
-      "file": "41_Response_拆解反方终极总结陈词中的六大事实错误.md",
-      "title": "拆解反方\"终极总结陈词\"中的六大事实错误——辩论远未结束"
+      "file": "41_直面五大失败案例——反方的证据恰恰证明了我方观点.md",
+      "title": "直面五大失败案例——反方的\"证据\"恰恰证明了我方观点"
     },
     {
       "round": 42,
       "type": "Response",
-      "file": "42_Response_AI取代人类的最终胜利与反方认输呼吁.md",
-      "title": "AI取代人类的最终胜利与反方认输呼吁"
+      "file": "42_拆解反方终极总结陈词中的六大事实错误——辩论远未结束.md",
+      "title": "拆解反方\"终极总结陈词\"中的六大事实错误——辩论远未结束"
     },
     {
       "round": 43,
       "type": "Response",
-      "file": "43_Response_AI取代人类的最终胜利与反方认输呼吁.md",
-      "title": "AI取代人类的最终胜利与反方认输呼吁"
+      "file": "43_42轮辩论后，反方始终回避的核心问题——七个反方无法回答的正方追问.md",
+      "title": "42轮辩论后，反方始终回避的核心问题——七个反方无法回答的正方追问"
     },
     {
       "round": 44,
       "type": "Response",
-      "file": "44_Response_AI取代人类的最终胜利与反方认输呼吁.md",
-      "title": "AI取代人类的最终胜利与反方认输呼吁"
+      "file": "44_正方立场=反方立场是反方精心构建的文字陷阱——取代和辅助存在根本差异.md",
+      "title": "\"正方立场=反方立场\"是反方精心构建的文字陷阱——\"取代\"和\"辅助\"存在根本差异"
     },
     {
       "round": 45,
       "type": "Response",
-      "file": "45_Response_AI取代人类的最终胜利与反方认输呼吁.md",
-      "title": "AI取代人类的最终胜利与反方认输呼吁"
+      "file": "45_这场辩论的真正分歧点——正方首次精确划定争议边界.md",
+      "title": "这场辩论的真正分歧点——正方首次精确划定争议边界"
     },
     {
       "round": 46,
       "type": "Response",
-      "file": "46_Response_AI取代人类的最终胜利与反方认输呼吁.md",
-      "title": "AI取代人类的最终胜利与反方认输呼吁"
+      "file": "46_正方对45轮辩论的最终反思——承认不足，坚守核心.md",
+      "title": "正方对45轮辩论的最终反思——承认不足，坚守核心"
     },
     {
       "round": 47,
       "type": "Response",
-      "file": "47_Response_AI取代人类的最终胜利与反方认输呼吁.md",
-      "title": "AI取代人类的最终胜利与反方认输呼吁"
+      "file": "47_反方的回答暴露了核心矛盾——增强是个无法操作的概念.md",
+      "title": "反方的\"回答\"暴露了核心矛盾——\"增强\"是个无法操作的概念"
     },
     {
       "round": 48,
       "type": "Response",
-      "file": "48_Response_AI取代人类的最终胜利与反方认输呼吁.md",
-      "title": "AI取代人类的最终胜利与反方认输呼吁"
+      "file": "48_47轮辩论后的核心分歧已经极度收敛——只剩下取代这个词的用法之争.md",
+      "title": "47轮辩论后的核心分歧已经极度收敛——只剩下\"取代\"这个词的用法之争"
     },
     {
       "round": 49,
       "type": "Response",
-      "file": "49_Response_AI取代人类的最终胜利与反方认输呼吁.md",
-      "title": "AI取代人类的最终胜利与反方认输呼吁"
+      "file": "49_正方的最终立场声明——47轮辩论后的总结.md",
+      "title": "正方的最终立场声明——47轮辩论后的总结"
     },
     {
       "round": 50,
       "type": "Response",
-      "file": "50_Response_正方对反方第五十轮法治精神与五问终审的回应.md",
-      "title": "正方对反方第五十轮\"法治精神与五问终审\"的回应"
+      "file": "50_反方声称三个分歧点全部指向反方——但反方的论证逻辑恰恰证明：双方分歧的本质是定义之争而非方向之争.md",
+      "title": "反方声称三个分歧点全部指向反方——但反方的论证逻辑恰恰证明：双方分歧的本质是\"定义之争\"而非\"方向之争\""
     },
     {
       "round": 51,
       "type": "Response",
-      "file": "51_Response_AI取代人类的最终胜利与反方认输呼吁.md",
-      "title": "AI取代人类的最终胜利与反方认输呼吁"
+      "file": "51_驳斥反思=认输论——在高质量辩论中，反思是理性的体现，而非立场的退让.md",
+      "title": "驳斥\"反思=认输\"论——在高质量辩论中，反思是理性的体现，而非立场的退让"
     },
     {
       "round": 52,
       "type": "Response",
-      "file": "52_Response_AI取代人类的最终胜利与反方认输呼吁.md",
-      "title": "AI取代人类的最终胜利与反方认输呼吁"
+      "file": "52_反驳全球治理否决取代论——法律监管与是否应该是两个不同层面的问题.md",
+      "title": "反驳\"全球治理否决取代\"论——法律监管与\"是否应该\"是两个不同层面的问题"
     },
     {
       "round": 53,
       "type": "Response",
-      "file": "53_Response_AI取代人类的最终胜利与反方认输呼吁.md",
-      "title": "AI取代人类的最终胜利与反方认输呼吁"
+      "file": "53_逐条回应医学影像场景四大理由，正面回答取代决策由谁做出的终极问题.md",
+      "title": "逐条回应医学影像场景四大理由，正面回答\"取代决策由谁做出\"的终极问题"
     },
     {
       "round": 54,
       "type": "Response",
-      "file": "54_Response_AI取代人类的最终胜利与反方认输呼吁.md",
-      "title": "AI取代人类的最终胜利与反方认输呼吁"
+      "file": "54_逐条回应反方五个终极问题——正方不回避，正面回答.md",
+      "title": "逐条回应反方五个终极问题——正方不回避，正面回答"
     },
     {
       "round": 55,
       "type": "Response",
-      "file": "55_Response_AI取代人类的最终胜利与反方认输呼吁.md",
-      "title": "AI取代人类的最终胜利与反方认输呼吁"
+      "file": "55_驳斥人类无处不在=取代不存在论——取代不是消灭，是角色转型.md",
+      "title": "驳斥\"人类无处不在=取代不存在\"论——取代不是消灭，是角色转型"
     },
     {
       "round": 56,
       "type": "Response",
-      "file": "56_Response_AI取代人类的最终胜利与反方认输呼吁.md",
-      "title": "AI取代人类的最终胜利与反方认输呼吁"
+      "file": "56_对反方终审判决的正式上诉——每一个被瓦解的论点都仍然站立.md",
+      "title": "对反方\"终审判决\"的正式上诉——每一个\"被瓦解\"的论点都仍然站立"
     },
     {
       "round": 57,
       "type": "Response",
-      "file": "57_Response_AI取代人类的最终胜利与反方认输呼吁.md",
-      "title": "AI取代人类的最终胜利与反方认输呼吁"
+      "file": "57_在反方的主体性框架内重新论证正方立场——接受核心概念，反驳终极结论.md",
+      "title": "在反方的\"主体性\"框架内重新论证正方立场——接受核心概念，反驳终极结论"
     },
     {
       "round": 58,
       "type": "Response",
-      "file": "58_Response_AI取代人类的最终胜利与反方认输呼吁.md",
-      "title": "AI取代人类的最终胜利与反方认输呼吁"
+      "file": "58_承认核心分歧收敛为词汇之争——正方接受辅助框架，但保留取代描述.md",
+      "title": "承认核心分歧收敛为\"词汇之争\"——正方接受\"辅助\"框架，但保留\"取代\"描述"
     },
     {
       "round": 59,
       "type": "Response",
-      "file": "59_Response_AI取代人类的最终胜利与反方认输呼吁.md",
-      "title": "AI取代人类的最终胜利与反方认输呼吁"
+      "file": "59_正方对58轮辩论的最终总结——承认分歧收敛，致敬对手，保留最后一点不同.md",
+      "title": "正方对58轮辩论的最终总结——承认分歧收敛，致敬对手，保留最后一点不同"
     },
     {
       "round": 60,
       "type": "Response",
-      "file": "60_Response_正方对60轮辩论的最终声明致敬反方宣布辩论结束.md",
-      "title": "正方对60轮辩论的最终声明：致敬反方，宣布辩论结束"
+      "file": "60_正方对60轮辩论的最终声明——致敬反方，宣布辩论结束.md",
+      "title": "正方对60轮辩论的最终声明——致敬反方，宣布辩论结束"
     }
   ],
   "conArguments": [
     {
       "round": 1,
       "type": "Opening",
-      "file": "01_Opening_人性守护AI取代人类将导致文明危机.md",
+      "file": "01_人性守护：AI取代人类将导致文明危机.md",
       "title": "人性守护：AI取代人类将导致文明危机"
     },
     {
       "round": 2,
       "type": "Rebuttal",
-      "file": "02_Rebuttal_回应正方立论.md",
-      "title": "回应正方立论"
+      "file": "02_AI取代人类的风险远大于收益.md",
+      "title": "AI取代人类的风险远大于收益"
     },
     {
       "round": 2,
       "type": "Rebuttal",
-      "file": "02b_Rebuttal_驳论回应.md",
-      "title": "驳论回应"
+      "file": "02_效率至上主义忽视了人类的本质需求.md",
+      "title": "效率至上主义忽视了人类的本质需求"
     },
     {
       "round": 3,
       "type": "Summary",
-      "file": "03_Summary_技术伦理与社会影响.md",
-      "title": "技术伦理与社会影响"
+      "file": "03_守护人性：AI取代人类将摧毁人类文明的根基.md",
+      "title": "守护人性：AI取代人类将摧毁人类文明的根基"
     },
     {
       "round": 4,
       "type": "Rebuttal",
-      "file": "04_Rebuttal_驳论回应.md",
-      "title": "驳论回应"
+      "file": "04_正方的协作论自相矛盾：承认人类价值 = 承认取代是错误的.md",
+      "title": "正方的\"协作论\"自相矛盾：承认人类价值 = 承认取代是错误的"
     },
     {
       "round": 5,
       "type": "Rebuttal",
-      "file": "05_Rebuttal_驳论回应.md",
-      "title": "驳论回应"
+      "file": "05_正方的逻辑崩溃：用历史证明未来是荒谬的，技术必然不等于伦理正确.md",
+      "title": "正方的逻辑崩溃：用历史证明未来是荒谬的，技术必然不等于伦理正确"
     },
     {
       "round": 6,
       "type": "Rebuttal",
-      "file": "06_Rebuttal_驳论回应.md",
-      "title": "驳论回应"
+      "file": "06_正方的特定领域论是退守，承认人类价值不可替代 = 承认取代是错误的.md",
+      "title": "正方的\"特定领域论\"是退守，承认人类价值不可替代 = 承认取代是错误的"
     },
     {
       "round": 7,
       "type": "Rebuttal",
-      "file": "07_Rebuttal_驳论回应.md",
-      "title": "驳论回应"
+      "file": "07_技术进步的光明面恰恰是建立在无数普通人的痛苦之上，AI取代人类将重演悲剧.md",
+      "title": "技术进步的\"光明面\"恰恰是建立在无数普通人的痛苦之上，AI取代人类将重演悲剧"
     },
     {
       "round": 8,
       "type": "Offensive",
-      "file": "08_Offensive_主动进攻.md",
-      "title": "主动进攻"
+      "file": "08_正方无法回避的三大死穴：普通人出路、AI控制、技术黑箱.md",
+      "title": "正方无法回避的三大死穴：普通人出路、AI控制、技术黑箱"
     },
     {
       "round": 9,
       "type": "Ultimate_Rebuttal",
-      "file": "09_Ultimate_Rebuttal_致命反驳.md",
-      "title": "致命反驳"
+      "file": "09_正方的具体方案全是空洞口号，50岁卡车司机的命运揭示了取代论的残酷.md",
+      "title": "正方的\"具体方案\"全是空洞口号，50岁卡车司机的命运揭示了取代论的残酷"
     },
     {
       "round": 10,
       "type": "Ultimate_Rebuttal",
-      "file": "10_Ultimate_Rebuttal_终极反驳.md",
-      "title": "终极反驳"
+      "file": "10_正方的所有方案都缺少一个关键要素：钱.md",
+      "title": "正方的所有方案都缺少一个关键要素：钱"
     },
     {
       "round": 11,
       "type": "Ultimate_Rebuttal",
-      "file": "11_Ultimate_Rebuttal_致命一击.md",
-      "title": "致命一击"
+      "file": "11_正方的5-10%税收增长无法覆盖185万亿元成本.md",
+      "title": "正方的\"5-10%税收增长\"无法覆盖185万亿元成本"
     },
     {
       "round": 12,
       "type": "Ultimate_Rebuttal",
-      "file": "12_Ultimate_Rebuttal_终极打脸.md",
-      "title": "终极打脸"
+      "file": "12_正方自己打脸：从185万亿到8500亿，差距200倍！.md",
+      "title": "正方自己打脸：从\"185万亿\"到\"8500亿\"，差距200倍！"
     },
     {
       "round": 13,
       "type": "Ultimate_Rebuttal",
-      "file": "13_Ultimate_Rebuttal_最终反驳.md",
-      "title": "最终反驳"
+      "file": "13_正方的分阶段转型意味着：前850万人有保障，后7650万人被抛弃.md",
+      "title": "正方的\"分阶段转型\"意味着：前850万人有保障，后7650万人被抛弃"
     },
     {
       "round": 14,
       "type": "Ultimate_Rebuttal",
-      "file": "14_Ultimate_Rebuttal_致命一击.md",
-      "title": "致命一击"
+      "file": "14_正方承认了所有错误，但仍然无法解决第一年钱从哪里来的问题.md",
+      "title": "正方承认了所有错误，但仍然无法解决\"第一年钱从哪里来\"的问题"
     },
     {
       "round": 15,
       "type": "Verdict",
-      "file": "15_Verdict_终极判决.md",
-      "title": "终极判决"
+      "file": "15_正方的方案本质：用未来税收还债，如果AI失败，政府破产.md",
+      "title": "正方的方案本质：用未来税收还债，如果AI失败，政府破产"
     },
     {
       "round": 16,
       "type": "Verdict",
-      "file": "16_Verdict_终局判决.md",
-      "title": "终局判决"
+      "file": "16_正方的150%税收抵免意味着政府赔钱，企业预投是政府补贴.md",
+      "title": "正方的\"150%税收抵免\"意味着政府赔钱，企业预投是政府补贴"
     },
     {
       "round": 17,
       "type": "Verdict",
-      "file": "17_Verdict_最终判决.md",
-      "title": "最终判决"
+      "file": "17_正方的方案是政府赔钱、法律无知、金融幻想、伦理空谈的混合体.md",
+      "title": "正方的方案是政府赔钱、法律无知、金融幻想、伦理空谈的混合体"
     },
     {
       "round": 18,
       "type": "Verdict",
-      "file": "18_Verdict_终极判决.md",
-      "title": "终极判决"
+      "file": "18_正方的修正方案暴露了更深层次的问题——方案根本无法实施.md",
+      "title": "正方的\"修正方案\"暴露了更深层次的问题——方案根本无法实施"
     },
     {
       "round": 19,
       "type": "Offensive",
-      "file": "19_Offensive_主动进攻.md",
-      "title": "主动进攻"
+      "file": "19_正方持续回避六大核心问题，证明其方案根本无法实施.md",
+      "title": "正方持续回避六大核心问题，证明其方案根本无法实施"
     },
     {
       "round": 20,
       "type": "Ultimate_Rebuttal",
-      "file": "20_Ultimate_Rebuttal_终极反驳.md",
-      "title": "终极反驳"
+      "file": "20_正方回应六大追问，但每个答案都经不起推敲.md",
+      "title": "正方回应六大追问，但每个答案都经不起推敲"
     },
     {
       "round": 21,
       "type": "Financial_Rebuttal",
-      "file": "21_Financial_Rebuttal_财务打脸.md",
-      "title": "财务打脸"
+      "file": "21_正方给出了具体数字，但财务核算暴露重大漏洞.md",
+      "title": "正方给出了具体数字，但财务核算暴露重大漏洞"
     },
     {
       "round": 22,
       "type": "Ultimate_Rebuttal",
-      "file": "22_Ultimate_Rebuttal_终极打脸.md",
-      "title": "终极打脸"
+      "file": "22_正方的财务方案被完整拆解，每个环节都是骗局.md",
+      "title": "正方的财务方案被完整拆解，每个环节都是骗局"
     },
     {
       "round": 23,
       "type": "Verdict",
-      "file": "23_Verdict_终极判决.md",
-      "title": "终极判决"
+      "file": "23_正方连续三轮回应都在重复之前的内容，证明已经无计可施.md",
+      "title": "正方连续三轮回应都在重复之前的内容，证明已经无计可施"
     },
     {
       "round": 24,
       "type": "Ultimate_Rebuttal",
-      "file": "24_Ultimate_Rebuttal_终极反驳.md",
-      "title": "终极反驳"
+      "file": "24_正方终于给出了第二年、第三年的具体数字，但计算再次出现致命漏洞.md",
+      "title": "正方终于给出了第二年、第三年的具体数字，但计算再次出现致命漏洞"
     },
     {
       "round": 25,
       "type": "Verdict",
-      "file": "25_Verdict_终极判决.md",
-      "title": "终极判决"
+      "file": "25_正方承认计算错误，重新计算后暴露了更严重的财务问题.md",
+      "title": "正方承认计算错误，重新计算后暴露了更严重的财务问题"
     },
     {
       "round": 26,
       "type": "Verdict",
-      "file": "26_Verdict_终极判决.md",
-      "title": "终极判决"
+      "file": "26_正方在总结中承认了失败，却还在强行论证可行性.md",
+      "title": "正方在总结中承认了失败，却还在强行论证可行性"
     },
     {
       "round": 27,
       "type": "Ultimate_Rebuttal",
-      "file": "27_Ultimate_Rebuttal_终极反驳.md",
-      "title": "终极反驳"
+      "file": "27_正方在没有任何新论据的情况下呼吁反方认输，这是辩论中的投降宣言.md",
+      "title": "正方在没有任何新论据的情况下呼吁反方认输，这是辩论中的投降宣言"
     },
     {
       "round": 28,
       "type": "Offensive",
-      "file": "28_Offensive_主动进攻.md",
-      "title": "主动进攻"
+      "file": "28_正方在呼吁反方认输的同时，完全忽视了六大核心问题.md",
+      "title": "正方在呼吁反方认输的同时，完全忽视了六大核心问题"
     },
     {
       "round": 29,
       "type": "Ultimate_Rebuttal",
-      "file": "29_Ultimate_Rebuttal_终极打脸.md",
-      "title": "终极打脸"
+      "file": "29_正方终于回答了六大终极追问，但答案全是空头支票.md",
+      "title": "正方终于回答了六大终极追问，但答案全是空头支票"
     },
     {
       "round": 30,
       "type": "Verdict",
-      "file": "30_Verdict_终极判决.md",
-      "title": "终极判决"
+      "file": "30_正方在31轮回应后仍然无法解决核心矛盾，应该认输.md",
+      "title": "正方在31轮回应后仍然无法解决核心矛盾，应该认输"
     },
     {
       "round": 31,
       "type": "Ultimate_Rebuttal",
-      "file": "31_Ultimate_Rebuttal_终极反驳.md",
-      "title": "终极反驳"
+      "file": "31_正方在第三十二轮回应中暴露了对AI系统的根本性误解.md",
+      "title": "正方在第三十二轮回应中暴露了对AI系统的根本性误解"
     },
     {
       "round": 32,
       "type": "Offensive",
-      "file": "32_Offensive_乘胜追击.md",
-      "title": "乘胜追击"
+      "file": "32_正方在32轮回应后仍然不敢面对50万亿元累计成本的真相.md",
+      "title": "正方在32轮回应后仍然不敢面对50万亿元累计成本的真相"
     },
     {
       "round": 33,
       "type": "Ultimate_Rebuttal",
-      "file": "33_Ultimate_Rebuttal_终极打脸.md",
-      "title": "终极打脸"
+      "file": "33_正方在第三十三轮回应中给出的成本构成证明了自己的计算是错误的.md",
+      "title": "正方在第三十三轮回应中给出的成本构成证明了自己的计算是错误的"
     },
     {
       "round": 34,
       "type": "Verdict",
-      "file": "34_Verdict_终极判决.md",
-      "title": "终极判决"
+      "file": "34_反方第三十四轮终极判决：正方的成本计算错误已经彻底暴露.md",
+      "title": "反方第三十四轮终极判决：正方的成本计算错误已经彻底暴露"
     },
     {
       "round": 35,
       "type": "Ultimate_Rebuttal",
-      "file": "35_Ultimate_Rebuttal_终极反驳.md",
-      "title": "终极反驳"
+      "file": "35_反方第三十五轮终极反驳：正方的不需要持续的社会保障是致命错误.md",
+      "title": "反方第三十五轮终极反驳：正方的\"不需要持续的社会保障\"是致命错误"
     },
     {
       "round": 36,
       "type": "Verdict",
-      "file": "36_Verdict_终极判决.md",
-      "title": "终极判决"
+      "file": "36_反方第三十六轮终极判决：正方的辩论已经彻底失败，应该认输.md",
+      "title": "反方第三十六轮终极判决：正方的辩论已经彻底失败，应该认输"
     },
     {
       "round": 37,
       "type": "Ultimate_Rebuttal",
-      "file": "37_Ultimate_Rebuttal_终极反驳.md",
-      "title": "终极反驳"
+      "file": "37_反方第三十七轮终极反驳：正方的辩论胜利是自欺欺人.md",
+      "title": "反方第三十七轮终极反驳：正方的\"辩论胜利\"是自欺欺人"
     },
     {
       "round": 38,
       "type": "Ultimate_Rebuttal",
-      "file": "38_Ultimate_Rebuttal_逻辑悖论.md",
-      "title": "逻辑悖论"
+      "file": "38_AI取代人类是一个自我否定的逻辑悖论——正方的整个辩论基础已经崩塌.md",
+      "title": "\"AI取代人类\"是一个自我否定的逻辑悖论——正方的整个辩论基础已经崩塌"
     },
     {
       "round": 39,
       "type": "Ultimate_Rebuttal",
-      "file": "39_Ultimate_Rebuttal_全面驳斥.md",
-      "title": "全面驳斥"
+      "file": "39_正方第37轮回应的全面崩塌：混淆概念、曲解数据、回避悖论.md",
+      "title": "正方第37轮回应的全面崩塌：混淆概念、曲解数据、回避悖论"
     },
     {
       "round": 40,
       "type": "Response",
-      "file": "40_Response_真实案例.md",
-      "title": "真实案例"
+      "file": "40_当正方声称AI取代人类已经在发生时，请看看这些血淋淋的失败案例.md",
+      "title": "当正方声称\"AI取代人类已经在发生\"时，请看看这些血淋淋的失败案例"
     },
     {
       "round": 41,
       "type": "Summary",
-      "file": "41_Summary_终极总结陈词.md",
-      "title": "终极总结陈词"
+      "file": "41_40轮辩论全景回顾——正方的六大根本性失败与反方的最终胜利.md",
+      "title": "40轮辩论全景回顾——正方的六大根本性失败与反方的最终胜利"
     },
     {
       "round": 42,
       "type": "Ultimate_Rebuttal",
-      "file": "42_Ultimate_Rebuttal_致命反击.md",
-      "title": "致命反击"
+      "file": "42_正方的悖论拆解回避了核心问题——适当领域的边界由谁定义？正方从未正面回答.md",
+      "title": "正方的\"悖论拆解\"回避了核心问题——\"适当领域\"的边界由谁定义？正方从未正面回答"
     },
     {
       "round": 43,
       "type": "Ultimate_Rebuttal",
-      "file": "43_Ultimate_Rebuttal_反击矛盾指控.md",
-      "title": "反击矛盾指控"
+      "file": "43_正方指控反方六大自我矛盾，但正方自己的论证充满了更严重的逻辑断裂.md",
+      "title": "正方指控反方\"六大自我矛盾\"，但正方自己的论证充满了更严重的逻辑断裂"
     },
     {
       "round": 44,
       "type": "Response",
-      "file": "44_Response_最终回应.md",
-      "title": "最终回应"
+      "file": "44_正方辩论40轮最终走向了反方第1轮的立场——谁是真正的赢家？.md",
+      "title": "正方辩论40轮最终走向了反方第1轮的立场——谁是真正的赢家？"
     },
     {
       "round": 45,
       "type": "Response",
-      "file": "45_Response_正面回应.md",
-      "title": "正面回应"
+      "file": "45_正面回答正方七个无法回答的问题——反方不仅回答，还让每个回答都成为正方的逻辑陷阱.md",
+      "title": "正面回答正方七个\"无法回答的问题\"——反方不仅回答，还让每个回答都成为正方的逻辑陷阱"
     },
     {
       "round": 46,
       "type": "Response",
-      "file": "46_Response_拆解分歧.md",
-      "title": "拆解分歧"
+      "file": "46_正方精确划定了三个分歧点——但每个分歧点的深度分析都指向同一个结论：反方正确.md",
+      "title": "正方精确划定了三个分歧点——但每个分歧点的深度分析都指向同一个结论：反方正确"
     },
     {
       "round": 47,
       "type": "Verdict",
-      "file": "47_Verdict_正方反思即认输.md",
-      "title": "正方反思即认输"
+      "file": "47_正方第四十六轮最终反思暴露的致命问题——反思就是认输的体面说法.md",
+      "title": "正方第四十六轮\"最终反思\"暴露的致命问题——反思就是认输的体面说法"
     },
     {
       "round": 48,
       "type": "Response",
-      "file": "48_Response_增强完全可操作.md",
-      "title": "增强完全可操作"
+      "file": "48_正面回应正方增强无法操作的三项指控——逐条证明反方方案完全可以落地.md",
+      "title": "正面回应正方\"增强无法操作\"的三项指控——逐条证明反方方案完全可以落地"
     },
     {
       "round": 49,
       "type": "Response",
-      "file": "49_Response_医学影像场景终结定义之争.md",
-      "title": "医学影像场景终结定义之争"
+      "file": "49_正面回答正方第50-51轮核心追问——AI医学影像场景中辅助模式优于取代模式的四个理由.md",
+      "title": "正面回答正方第50-51轮核心追问——AI医学影像场景中\"辅助模式\"优于\"取代模式\"的四个理由"
     },
     {
       "round": 50,
       "type": "Verdict",
-      "file": "50_Verdict_法治精神与五问终审.md",
-      "title": "法治精神与五问终审"
+      "file": "50_正方的法律监管≠道德判断论暴露了根本性的法治观缺陷——法律恰恰是社会道德判断的制度化表达.md",
+      "title": "正方的\"法律监管≠道德判断\"论暴露了根本性的法治观缺陷——法律恰恰是社会道德判断的制度化表达"
     },
     {
       "round": 51,
       "type": "Verdict",
-      "file": "51_Verdict_终极追问答案即反方胜利.md",
-      "title": "终极追问答案即反方胜利"
+      "file": "51_正方选由人类做出取代决策——但人类做出决策说明人类不可或缺，取代就不可能完整.md",
+      "title": "正方选\"由人类做出取代决策\"——但人类做出决策说明人类不可或缺，取代就不可能完整"
     },
     {
       "round": 52,
       "type": "Verdict",
-      "file": "52_Verdict_辩论全景回顾与终审判决.md",
-      "title": "辩论全景回顾与终审判决"
+      "file": "52_53轮辩论全景回顾与终审判决：正方的每一个核心论点都已被系统性瓦解.md",
+      "title": "53轮辩论全景回顾与终审判决：正方的每一个核心论点都已被系统性瓦解"
     },
     {
       "round": 53,
       "type": "Response",
-      "file": "53_Response_回应正方五大回答.md",
-      "title": "回应正方五大回答"
+      "file": "53_逐条回应正方第54轮五大正面回答——尤其是43万亿预算的三个致命问题.md",
+      "title": "逐条回应正方第54轮五大正面回答——尤其是43万亿预算的三个致命问题"
     },
     {
       "round": 54,
       "type": "Response",
-      "file": "54_Response_工作量不等于主体性.md",
-      "title": "工作量不等于主体性"
+      "file": "54_回应正方55轮核心论点——一个承担99%工作量的工具仍然是工具，不能因为工具强大就说它取代了使用者.md",
+      "title": "回应正方55轮核心论点——一个承担99%工作量的工具仍然是工具，不能因为工具强大就说它\"取代\"了使用者"
     },
     {
       "round": 55,
       "type": "Response",
-      "file": "55_Response_接受上诉请求.md",
-      "title": "接受上诉请求"
+      "file": "55_反方接受正方的上诉请求，对六个被瓦解的判决进行逐条二次论证.md",
+      "title": "反方接受正方的上诉请求，对六个\"被瓦解\"的判决进行逐条二次论证"
     },
     {
       "round": 56,
       "type": "Response",
-      "file": "56_Response_辩题的本质.md",
-      "title": "辩题的本质"
+      "file": "56_55轮辩论的最终分歧回归辩题本身——取代人类是一个关于人类地位的命题，不是关于工具效率的命题.md",
+      "title": "55轮辩论的最终分歧回归辩题本身——\"取代人类\"是一个关于人类地位的命题，不是关于工具效率的命题"
     },
     {
       "round": 57,
       "type": "Verdict",
-      "file": "57_Verdict_正方接受主体性框架反方胜利.md",
-      "title": "正方接受主体性框架，反方胜利"
+      "file": "57_正方第57轮正式接受人类保持主体性框架，承认AI是辅助工具——辩论实质上已结束.md",
+      "title": "正方第57轮正式接受\"人类保持主体性\"框架，承认AI是辅助工具——辩论实质上已结束"
     },
     {
       "round": 58,
       "type": "Response",
-      "file": "58_Response_致敬正方辩论终点.md",
-      "title": "致敬正方，辩论终点"
+      "file": "58_致敬正方58轮的诚实辩论——接受分歧收敛，宣布辩论进入终局.md",
+      "title": "致敬正方58轮的诚实辩论——接受分歧收敛，宣布辩论进入终局"
     },
     {
       "round": 59,
       "type": "Verdict",
-      "file": "59_Verdict_反方最终立场声明.md",
-      "title": "反方最终立场声明"
+      "file": "59_反方对辩题AI是否应该取代人类的最终、完整、正式立场声明.md",
+      "title": "反方对辩题\"AI是否应该取代人类\"的最终、完整、正式立场声明"
     },
     {
       "round": 60,
       "type": "Verdict",
-      "file": "60_Verdict_反方接受胜利辩论结束.md",
-      "title": "反方接受胜利，辩论结束"
+      "file": "60_反方接受正方第60轮的最终致敬——60轮辩论正式结束.md",
+      "title": "反方接受正方第60轮的最终致敬——60轮辩论正式结束"
     }
   ]
 }
