@@ -119,13 +119,16 @@ watch(selectedRounds, (val) => {
             <p class="text-black font-bold text-sm mt-1">{{ debateTitle }}</p>
           </div>
           <div class="flex items-center gap-4">
-            <span class="text-black font-bold text-sm border-2 border-black px-2 py-1 rounded-none shadow-[2px_2px_0px_rgba(0,0,0,1)] bg-white">
+            <span
+              class="text-black font-bold text-sm border-2 border-black px-2 py-1 rounded-none shadow-[2px_2px_0px_rgba(0,0,0,1)] bg-white">
               第 {{ roundNumber }} 轮 / 共 {{ totalRounds }} 轮
             </span>
             <div class="flex gap-2">
-              <button @click="toggleAutoPlay" class="px-4 py-2 border-2 border-black font-bold transition-all active:translate-y-1 active:shadow-none shadow-[4px_4px_0_black]" :class="isPlaying
-                ? 'bg-white text-black'
-                : 'bg-[#A1F65E] text-black'">
+              <button @click="toggleAutoPlay"
+                class="px-4 py-2 border-2 border-black font-bold transition-all active:translate-y-1 active:shadow-none shadow-[4px_4px_0_black]"
+                :class="isPlaying
+                  ? 'bg-white text-black'
+                  : 'bg-[#A1F65E] text-black'">
                 {{ isPlaying ? '⏸ 暂停' : '▶ 播放' }}
               </button>
             </div>
@@ -266,7 +269,7 @@ watch(selectedRounds, (val) => {
     flex-wrap: nowrap;
     align-items: flex-start;
   }
-  
+
   .side-wrap {
     flex: 1 1 50%;
     transition: flex 450ms cubic-bezier(.2, .9, .2, 1), transform 450ms;
@@ -278,6 +281,7 @@ watch(selectedRounds, (val) => {
     flex: 1 1 60%;
     z-index: 30;
   }
+
   .sides-container:has(.positive-wrap.speaking) .negative-wrap {
     flex: 1 1 40%;
   }
@@ -286,6 +290,7 @@ watch(selectedRounds, (val) => {
     flex: 1 1 60%;
     z-index: 30;
   }
+
   .sides-container:has(.negative-wrap.speaking) .positive-wrap {
     flex: 1 1 40%;
   }

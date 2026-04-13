@@ -40,14 +40,15 @@ const formatContent = (content: string): string => {
 </script>
 
 <template>
-  <div class="argument-card rounded-none overflow-hidden"
-    :class="[borderColor, bgColor]"
+  <div class="argument-card rounded-none overflow-hidden" :class="[borderColor, bgColor]"
     style="box-shadow: 6px 6px 0px black;">
     <!-- Header -->
     <div class="px-6 py-4 border-b-2 border-black" :class="headerBg">
       <div class="flex items-start justify-between gap-4">
         <div>
-          <span class="inline-block px-2 py-1 text-xs font-bold rounded-none border border-black bg-white mb-2 text-black" style="box-shadow: 2px 2px 0px black;">
+          <span
+            class="inline-block px-2 py-1 text-xs font-bold rounded-none border border-black bg-white mb-2 text-black"
+            style="box-shadow: 2px 2px 0px black;">
             第 {{ round }} 轮
           </span>
           <h3 class="text-lg font-black text-black leading-tight">
