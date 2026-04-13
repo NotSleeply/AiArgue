@@ -1,5 +1,6 @@
 // 辩论数据（自动从正方/反方目录同步加载）
 import { ref } from "vue";
+import { extractArgumentTitleFromMarkdown } from "../lib/markdown";
 
 export interface Argument {
   title: string;
@@ -36,12 +37,7 @@ export const finalConclusion = {
 // Helper: 去掉扩展名
 const stripExt = (name: string) => name.replace(/\.[^/.]+$/, "");
 
-function extractArgumentTitleFromMarkdown(md: string): string | null {
-  const match = md.match(/^##\s*论据标题\s*[\r\n]+([^\r\n]+)/m);
-  if (match?.[1]?.trim()) return match[1].trim();
-  const headingMatch = md.match(/^#\s*([^\r\n]+)/m);
-  return headingMatch?.[1]?.trim() ?? null;
-}
+// Markdown 标题提取已抽离到 src/lib/markdown.ts
 
 // 简单的中文数字（1-99）到阿拉伯数字转换，能处理类似「三十七」「十一」等
 function chineseToNumber(s: string): number {

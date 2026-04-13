@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import type { Argument } from '../data/debate'
-import MarkdownIt from 'markdown-it'
+import { renderMarkdown } from '../lib/markdown'
 
 const props = defineProps<{
   argument: Argument
@@ -22,11 +22,7 @@ const headerBg = computed(() => {
   return props.side === 'positive' ? 'bg-[#A1F65E]' : 'bg-[#A1F65E]'
 })
 
-const md = new MarkdownIt({ html: true })
-
-const formatContent = (content: string): string => {
-  return md.render(content)
-}
+const formatContent = (content: string): string => renderMarkdown(content)
 </script>
 
 <template>
