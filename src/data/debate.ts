@@ -109,8 +109,22 @@ export async function ensureManifestLoaded(): Promise<void> {
       return;
     }
     const json = await res.json();
-    const pos: string[] = Array.isArray(json.positive) ? json.positive : [];
-    const neg: string[] = Array.isArray(json.negative) ? json.negative : [];
+
+    // 支持多种 manifest 格式：
+    // 1) { positive: ["file.md"], negative: ["file.md"] }
+    // 2) { proArguments: [{round:1,file:"01_...md",title:"..."}, ...], conArguments: [...] }
+    // 3) 回退：字符串数组或带数字前缀的文件名（如 "01_..."）
+
+    const posEntries: any[] = Array.isArray(json.positive)
+      ? json.positive
+      : Array.isArray(json.proArguments)
+        ? json.proArguments
+        : [];
+    const negEntries: any[] = Array.isArray(json.negative)
+      ? json.negative
+      : Array.isArray(json.conArguments)
+        ? json.conArguments
+        : [];
 
     posKeyByRound.clear();
     negKeyByRound.clear();
@@ -118,20 +132,65 @@ export async function ensureManifestLoaded(): Promise<void> {
     negTitleByRound.clear();
     roundsSet.clear();
 
-    for (const filename of pos) {
-      const round = extractRoundNumberFromFilename(filename);
-      if (round !== null) {
-        posKeyByRound.set(round, filename);
-        posTitleByRound.set(round, stripExt(filename));
-        roundsSet.add(round);
+    const tryParseRoundFromFilename = (fname: string): number | null => {
+      if (!fname) return null;
+      // 常见前缀：01_xxx 或 1_xxx
+      const m = fname.match(/^0*([1-9][0-9]?)[_-]/);
+      if (m) return Number(m[1]);
+      // 尝试提取形如 第X轮 的中文文件名
+      const ch = extractRoundNumberFromFilename(fname);
+      if (ch !== null) return ch;
+      // 最后一招：找第一个出现的数字（保守）
+      const m2 = fname.match(/(\d{1,2})/);
+      if (m2) return Number(m2[1]);
+      return null;
+    };
+
+    // 解析正方条目
+    for (const entry of posEntries) {
+      if (!entry) continue;
+      if (typeof entry === "string") {
+        const round = tryParseRoundFromFilename(entry);
+        if (round !== null) {
+          posKeyByRound.set(round, entry);
+          posTitleByRound.set(round, stripExt(entry));
+          roundsSet.add(round);
+        }
+      } else if (typeof entry === "object") {
+        const round =
+          entry.round != null
+            ? Number(entry.round)
+            : tryParseRoundFromFilename(entry.file || entry.name || "");
+        if (!Number.isNaN(round) && round != null) {
+          const file = entry.file ?? entry.name ?? "";
+          posKeyByRound.set(round, file || stripExt(String(entry.title ?? "")));
+          posTitleByRound.set(round, entry.title ?? stripExt(file || ""));
+          roundsSet.add(round);
+        }
       }
     }
-    for (const filename of neg) {
-      const round = extractRoundNumberFromFilename(filename);
-      if (round !== null) {
-        negKeyByRound.set(round, filename);
-        negTitleByRound.set(round, stripExt(filename));
-        roundsSet.add(round);
+
+    // 解析反方条目
+    for (const entry of negEntries) {
+      if (!entry) continue;
+      if (typeof entry === "string") {
+        const round = tryParseRoundFromFilename(entry);
+        if (round !== null) {
+          negKeyByRound.set(round, entry);
+          negTitleByRound.set(round, stripExt(entry));
+          roundsSet.add(round);
+        }
+      } else if (typeof entry === "object") {
+        const round =
+          entry.round != null
+            ? Number(entry.round)
+            : tryParseRoundFromFilename(entry.file || entry.name || "");
+        if (!Number.isNaN(round) && round != null) {
+          const file = entry.file ?? entry.name ?? "";
+          negKeyByRound.set(round, file || stripExt(String(entry.title ?? "")));
+          negTitleByRound.set(round, entry.title ?? stripExt(file || ""));
+          roundsSet.add(round);
+        }
       }
     }
 
