@@ -36,8 +36,7 @@ export const finalConclusion = {
 // Helper: 去掉扩展名
 const stripExt = (name: string) => name.replace(/\.[^/.]+$/, "");
 
-// Helper: 从路径中取文件名
-const basenameFromPath = (p: string) => p.split("/").pop() || p;
+// Helper: 从路径中取文件名（已移除未使用的实现）
 
 // 简单的中文数字（1-99）到阿拉伯数字转换，能处理类似「三十七」「十一」等
 function chineseToNumber(s: string): number {
@@ -90,100 +89,135 @@ function extractRoundNumberFromFilename(name: string): number | null {
 
 // 使用 Vite 的 import.meta.glob 生成懒加载函数（不 eager）
 // 文件放在 public 下，路径相对于仓库根目录：public/正方/*.md
-const posGlob = import.meta.glob("../../public/正方/*.md", {
-  as: "raw",
-}) as Record<string, () => Promise<string>>;
-const negGlob = import.meta.glob("../../public/反方/*.md", {
-  as: "raw",
-}) as Record<string, () => Promise<string>>;
-
-// 将文件 key 映射为轮次（不立即 fetch 内容）
+// 运行时从 public/debate-manifest.json 加载文件清单并懒加载内容
+let manifestLoaded = false;
 const posKeyByRound = new Map<number, string>();
 const negKeyByRound = new Map<number, string>();
 const posTitleByRound = new Map<number, string>();
 const negTitleByRound = new Map<number, string>();
+const roundsSet = new Set<number>();
 
-for (const key of Object.keys(posGlob)) {
-  const normalized = key.replace(/\\/g, "/");
-  const name = basenameFromPath(normalized);
-  const round = extractRoundNumberFromFilename(name);
-  if (round !== null) {
-    posKeyByRound.set(round, key);
-    posTitleByRound.set(round, stripExt(name));
+export const selectedRounds = ref<DebateRound[]>([]);
+
+export async function ensureManifestLoaded(): Promise<void> {
+  if (manifestLoaded) return;
+  try {
+    const res = await fetch("/debate-manifest.json");
+    if (!res.ok) {
+      console.error("无法加载 debate-manifest.json", res.status);
+      manifestLoaded = true;
+      return;
+    }
+    const json = await res.json();
+    const pos: string[] = Array.isArray(json.positive) ? json.positive : [];
+    const neg: string[] = Array.isArray(json.negative) ? json.negative : [];
+
+    posKeyByRound.clear();
+    negKeyByRound.clear();
+    posTitleByRound.clear();
+    negTitleByRound.clear();
+    roundsSet.clear();
+
+    for (const filename of pos) {
+      const round = extractRoundNumberFromFilename(filename);
+      if (round !== null) {
+        posKeyByRound.set(round, filename);
+        posTitleByRound.set(round, stripExt(filename));
+        roundsSet.add(round);
+      }
+    }
+    for (const filename of neg) {
+      const round = extractRoundNumberFromFilename(filename);
+      if (round !== null) {
+        negKeyByRound.set(round, filename);
+        negTitleByRound.set(round, stripExt(filename));
+        roundsSet.add(round);
+      }
+    }
+
+    const allRounds: DebateRound[] = Array.from(roundsSet)
+      .sort((a, b) => a - b)
+      .map((r) => ({
+        round: r,
+        positive: {
+          title: posTitleByRound.get(r) ?? `正方 第${r}轮`,
+          content: "",
+          source: "",
+          time: "",
+        },
+        negative: {
+          title: negTitleByRound.get(r) ?? `反方 第${r}轮`,
+          content: "",
+          source: "",
+          time: "",
+        },
+      }));
+
+    selectedRounds.value = allRounds;
+    manifestLoaded = true;
+  } catch (e) {
+    console.error("ensureManifestLoaded error", e);
+    manifestLoaded = true;
   }
 }
-
-for (const key of Object.keys(negGlob)) {
-  const normalized = key.replace(/\\/g, "/");
-  const name = basenameFromPath(normalized);
-  const round = extractRoundNumberFromFilename(name);
-  if (round !== null) {
-    negKeyByRound.set(round, key);
-    negTitleByRound.set(round, stripExt(name));
-  }
-}
-
-// 先构建占位的回合列表（content 为空），在需要时按回合懒加载内容
-const roundsSet = new Set<number>([
-  ...posKeyByRound.keys(),
-  ...negKeyByRound.keys(),
-]);
-const allRounds: DebateRound[] = Array.from(roundsSet)
-  .sort((a, b) => a - b)
-  .map((r) => ({
-    round: r,
-    positive: {
-      title: posTitleByRound.get(r) ?? `正方 第${r}轮`,
-      content: "",
-      source: "",
-      time: "",
-    },
-    negative: {
-      title: negTitleByRound.get(r) ?? `反方 第${r}轮`,
-      content: "",
-      source: "",
-      time: "",
-    },
-  }));
-
-export const selectedRounds = ref<DebateRound[]>(allRounds);
 
 // 懒加载单个回合的内容（正反两方都尝试加载）
 export async function loadRoundContent(
   round: number,
 ): Promise<DebateRound | null> {
+  await ensureManifestLoaded();
   const idx = selectedRounds.value.findIndex((it) => it.round === round);
   if (idx === -1) return null;
 
   const entry = selectedRounds.value[idx];
 
-  // 加载正方
-  const posKey = posKeyByRound.get(round);
-  if (posKey && (!entry.positive.content || entry.positive.content === "")) {
+  // 加载正方（从 public 路径 fetch）
+  const posFilename = posKeyByRound.get(round);
+  if (
+    posFilename &&
+    (!entry.positive.content || entry.positive.content === "")
+  ) {
     try {
-      const raw = await posGlob[posKey]();
-      selectedRounds.value[idx] = {
-        ...entry,
-        positive: { ...entry.positive, content: raw },
-      };
+      const url = `/${encodeURIComponent("正方")}/${encodeURIComponent(posFilename)}`;
+      const rawRes = await fetch(url);
+      if (rawRes.ok) {
+        const raw = await rawRes.text();
+        selectedRounds.value[idx] = {
+          ...entry,
+          positive: { ...entry.positive, content: raw },
+        };
+      } else {
+        console.warn("fetch 正方 md 失败", url, rawRes.status);
+      }
     } catch (e) {
-      console.warn("加载正方 md 失败", posKey, e);
+      console.warn("加载正方 md 失败", posFilename, e);
     }
   }
 
   // 加载反方
-  const negKey = negKeyByRound.get(round);
-  if (negKey && (!entry.negative.content || entry.negative.content === "")) {
+  const negFilename = negKeyByRound.get(round);
+  if (
+    negFilename &&
+    (!selectedRounds.value[idx].negative.content ||
+      selectedRounds.value[idx].negative.content === "")
+  ) {
     try {
-      const raw = await negGlob[negKey]();
-      // 可能上面已经替换了 selectedRounds.value[idx]
-      const cur =
-        selectedRounds.value.find((it) => it.round === round) || entry;
-      const merged = { ...cur, negative: { ...cur.negative, content: raw } };
-      const curIdx = selectedRounds.value.findIndex((it) => it.round === round);
-      if (curIdx !== -1) selectedRounds.value[curIdx] = merged;
+      const url = `/${encodeURIComponent("反方")}/${encodeURIComponent(negFilename)}`;
+      const rawRes = await fetch(url);
+      if (rawRes.ok) {
+        const raw = await rawRes.text();
+        const cur =
+          selectedRounds.value.find((it) => it.round === round) || entry;
+        const merged = { ...cur, negative: { ...cur.negative, content: raw } };
+        const curIdx = selectedRounds.value.findIndex(
+          (it) => it.round === round,
+        );
+        if (curIdx !== -1) selectedRounds.value[curIdx] = merged;
+      } else {
+        console.warn("fetch 反方 md 失败", url, rawRes.status);
+      }
     } catch (e) {
-      console.warn("加载反方 md 失败", negKey, e);
+      console.warn("加载反方 md 失败", negFilename, e);
     }
   }
 
@@ -197,6 +231,8 @@ export function prefetchRound(round: number) {
 
 // 加载所有回合（谨慎使用）
 export async function loadAllRounds(): Promise<DebateRound[]> {
+  await ensureManifestLoaded();
   await Promise.all(Array.from(roundsSet).map((r) => loadRoundContent(r)));
   return selectedRounds.value;
 }
+// 注意：已实现的函数位于上方，已移除旧的重复实现
