@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import PlayButton from './PlayButton.vue'
+import ProgressBar from './ProgressBar.vue'
+
 const { debateTitle, roundNumber, totalRounds, isPlaying, toggleAutoPlay, progress } = defineProps<{
   debateTitle: string
   roundNumber: number
@@ -25,19 +28,12 @@ const { debateTitle, roundNumber, totalRounds, isPlaying, toggleAutoPlay, progre
             第 {{ roundNumber }} 轮 / 共 {{ totalRounds }} 轮
           </span>
           <div class="flex gap-2">
-            <button @click="toggleAutoPlay"
-              class="px-4 py-2 border-2 border-black font-bold transition-all active:translate-y-1 active:shadow-none shadow-[4px_4px_0_black]"
-              :class="isPlaying ? 'bg-white text-black' : 'bg-[#A1F65E] text-black'">
-              {{ isPlaying ? '⏸ 暂停' : '▶ 播放' }}
-            </button>
+            <PlayButton :isPlaying="isPlaying" :toggle="toggleAutoPlay" />
           </div>
         </div>
       </div>
 
-      <div class="mt-4 h-4 bg-white border-2 border-black overflow-hidden flex shadow-[2px_2px_0_black]">
-        <div class="h-full bg-[#A1F65E] transition-all duration-500 border-r-2 border-black"
-          :style="{ width: `${progress}%` }"></div>
-      </div>
+      <ProgressBar :progress="progress" />
     </div>
   </header>
 </template>

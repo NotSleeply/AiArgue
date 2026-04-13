@@ -2,6 +2,7 @@
 import { ref, computed, onMounted, watch } from 'vue'
 import { debateTitle, positiveName, negativeName, totalRounds, finalConclusion } from './data/debate'
 import useDebate from './composables/useDebate'
+import useAutoPlay from './composables/useAutoPlay'
 import DebateTimeline from './components/DebateTimeline.vue'
 import FinalResult from './components/FinalResult.vue'
 import HeaderBar from './components/HeaderBar.vue'
@@ -11,8 +12,6 @@ import ToggleContentButton from './components/ToggleContentButton.vue'
 import CharacterSilhouette from './components/CharacterSilhouette.vue'
 
 const currentRoundIndex = ref(0)
-const isPlaying = ref(false)
-const autoPlayInterval = ref<number | null>(null)
 const showFullContent = ref(false)
 const activeSide = ref<'positive' | 'negative'>('positive')
 
@@ -35,8 +34,6 @@ const nextRound = () => {
   if (currentRoundIndex.value < selectedRounds.value.length - 1) {
     currentRoundIndex.value++
     showFullContent.value = false
-  } else {
-    stopAutoPlay()
   }
 }
 
@@ -47,32 +44,14 @@ const prevRound = () => {
   }
 }
 
-const toggleAutoPlay = () => {
-  if (isPlaying.value) {
-    stopAutoPlay()
-  } else {
-    startAutoPlay()
-  }
-}
-
-const startAutoPlay = () => {
-  isPlaying.value = true
-  autoPlayInterval.value = window.setInterval(() => {
-    if (currentRoundIndex.value < selectedRounds.value.length - 1) {
-      nextRound()
-    } else {
-      stopAutoPlay()
-    }
-  }, 8000)
-}
-
-const stopAutoPlay = () => {
-  isPlaying.value = false
-  if (autoPlayInterval.value) {
-    clearInterval(autoPlayInterval.value)
-    autoPlayInterval.value = null
-  }
-}
+// 自动播放逻辑委托给 composable，避免在组件内管理定时器
+const { isPlaying, toggle: toggleAutoPlay } = useAutoPlay(
+  () => currentRoundIndex.value < selectedRounds.value.length - 1,
+  () => {
+    nextRound()
+  },
+  8000,
+)
 
 const toggleContent = () => {
   showFullContent.value = !showFullContent.value
