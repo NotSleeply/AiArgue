@@ -229,13 +229,13 @@ export async function ensureManifestLoaded(): Promise<void> {
         positive: {
           title: posTitleByRound.get(r) ?? `正方 第${r}轮`,
           content: "",
-          source: "",
+          source: "GLM-5",
           time: "",
         },
         negative: {
           title: negTitleByRound.get(r) ?? `反方 第${r}轮`,
           content: "",
-          source: "",
+          source: "GLM-5",
           time: "",
         },
       }));
@@ -264,6 +264,7 @@ export async function loadRoundContent(
       ...argument,
       title: extractedTitle || argument.title,
       content: raw,
+      source: argument.source || "GLM-5",
     };
   };
 
