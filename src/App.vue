@@ -136,6 +136,20 @@ watch(selectedRounds, (val) => {
           <p>⚔️ AI 辩论赛 | 正在进行中...</p>
         </template>
         <p class="mt-2 text-black/60">Powered by AI vs AI</p>
+        <div class="mt-2 flex items-center justify-center gap-4 text-sm text-black/70">
+          <span>版权所有 © Notsleeply</span>
+          <span>联系: <a href="mailto:120233502050@stu.ustl.edu.cn"
+              class="underline">120233502050@stu.ustl.edu.cn</a></span>
+          <a href="https://github.com/NotSleeply/AiArgue" target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 text-black hover:text-black/80">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"
+              aria-hidden="true">
+              <path
+                d="M12 .5C5.648.5.5 5.648.5 12c0 5.088 3.292 9.404 7.861 10.928.575.105.784-.25.784-.556 0-.275-.01-1.007-.015-1.978-3.197.696-3.873-1.542-3.873-1.542-.523-1.33-1.277-1.684-1.277-1.684-1.044-.713.08-.698.08-.698 1.155.082 1.763 1.187 1.763 1.187 1.025 1.755 2.69 1.249 3.345.955.104-.743.402-1.249.73-1.536-2.553-.291-5.238-1.277-5.238-5.682 0-1.255.448-2.279 1.187-3.083-.119-.291-.515-1.464.113-3.05 0 0 .97-.311 3.177 1.176A11.044 11.044 0 0112 6.844c.983.005 1.973.133 2.895.39 2.203-1.487 3.171-1.176 3.171-1.176.63 1.586.234 2.759.115 3.05.742.804 1.186 1.828 1.186 3.083 0 4.417-2.692 5.386-5.256 5.672.414.359.783 1.066.783 2.151 0 1.554-.014 2.806-.014 3.186 0 .31.207.667.79.554C20.71 21.402 24 17.086 24 12 24 5.648 18.352.5 12 .5z" />
+            </svg>
+            <span class="sr-only">GitHub</span>
+          </a>
+        </div>
       </div>
     </footer>
   </div>
