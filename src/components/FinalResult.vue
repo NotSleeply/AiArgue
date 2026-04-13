@@ -1,19 +1,12 @@
 <script setup lang="ts">
+import WinnerBanner from './WinnerBanner.vue'
+import ConsensusGrid from './ConsensusGrid.vue'
 import { finalConclusion, totalRounds } from '../data/debate'
 </script>
 
 <template>
   <div class="mt-16 rounded-2xl border border-yellow-500/30 bg-gradient-to-br from-yellow-500/10 to-orange-500/10 p-8">
-    <!-- Winner announcement -->
-    <div class="text-center mb-8">
-      <div class="text-6xl mb-4">🏆</div>
-      <h2 class="text-3xl font-bold text-yellow-400 mb-2">
-        {{ finalConclusion.winner }} 获胜！
-      </h2>
-      <p class="text-slate-400">
-        经过 {{ totalRounds }} 轮精彩辩论，胜负已分
-      </p>
-    </div>
+    <WinnerBanner :finalConclusion="finalConclusion" :totalRounds="totalRounds" />
 
     <!-- Final statement -->
     <div class="bg-slate-800/50 rounded-xl p-6 mb-8">
@@ -31,24 +24,7 @@ import { finalConclusion, totalRounds } from '../data/debate'
       </p>
     </div>
 
-    <!-- 7 consensus points -->
-    <div class="mb-8">
-      <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
-        <span>🤝</span> 双方达成的七项共识
-      </h3>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <div v-for="(item, index) in finalConclusion.summary" :key="index"
-          class="bg-slate-800/30 rounded-lg p-4 border border-slate-700/50 hover:border-green-500/50 transition-all">
-          <div class="flex items-start gap-3">
-            <span
-              class="flex-shrink-0 w-8 h-8 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center font-bold">
-              {{ index + 1 }}
-            </span>
-            <p class="text-slate-300 text-sm">{{ item }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <ConsensusGrid :summary="finalConclusion.summary" />
 
     <!-- Key insight -->
     <div class="bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-xl p-6 border border-purple-500/30">

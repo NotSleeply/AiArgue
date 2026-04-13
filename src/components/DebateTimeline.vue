@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, watch, nextTick } from 'vue'
 import type { DebateRound } from '../types/debate'
+import TimelineItem from './TimelineItem.vue'
 
 const props = defineProps<{
   rounds: DebateRound[]
@@ -33,17 +34,8 @@ watch(() => props.currentIndex, async (newVal) => {
     <!-- 内部容器负责滚动 -->
     <div class="overflow-x-auto w-full p-4 custom-scrollbar" ref="timelineScroll">
       <div class="flex items-center gap-6 w-max px-2 py-4">
-        <button v-for="(round, index) in rounds" :key="round.round" @click="emit('select', index)"
-          class="relative flex-shrink-0 font-black text-xl w-16 h-16 flex items-center justify-center border-4 border-black transition-all active:translate-y-1 active:shadow-none"
-          :class="[
-            index === currentIndex
-              ? 'bg-[#A1F65E] text-black shadow-[4px_4px_0_black] scale-110 z-10'
-              : index < currentIndex
-                ? 'bg-black text-white shadow-[4px_4px_0_black]'
-                : 'bg-white text-black shadow-[4px_4px_0_black] hover:bg-gray-200'
-          ]">
-          {{ round.round }}
-        </button>
+        <TimelineItem v-for="(round, index) in rounds" :key="round.round" :roundNumber="round.round" :index="index"
+          :currentIndex="props.currentIndex" @select="(i) => emit('select', i)" />
       </div>
     </div>
   </div>
