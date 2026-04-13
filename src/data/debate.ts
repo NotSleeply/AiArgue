@@ -88,60 +88,115 @@ function extractRoundNumberFromFilename(name: string): number | null {
   return Number.isFinite(num) ? num : null;
 }
 
-// 使用 Vite 的 import.meta.glob 同步（eager）加载 Markdown 文件为原始文本
-// 注意：路径是相对于本文件（src/data）到仓库根目录
-const posFiles = import.meta.glob("../../正方/*.md", {
+// 使用 Vite 的 import.meta.glob 生成懒加载函数（不 eager）
+// 文件放在 public 下，路径相对于仓库根目录：public/正方/*.md
+const posGlob = import.meta.glob("../../public/正方/*.md", {
   as: "raw",
-  eager: true,
-}) as Record<string, string>;
-const negFiles = import.meta.glob("../../反方/*.md", {
+}) as Record<string, () => Promise<string>>;
+const negGlob = import.meta.glob("../../public/反方/*.md", {
   as: "raw",
-  eager: true,
-}) as Record<string, string>;
+}) as Record<string, () => Promise<string>>;
 
-const posMap = new Map<number, Argument>();
-for (const [path, raw] of Object.entries(posFiles)) {
-  const name = basenameFromPath(path);
+// 将文件 key 映射为轮次（不立即 fetch 内容）
+const posKeyByRound = new Map<number, string>();
+const negKeyByRound = new Map<number, string>();
+const posTitleByRound = new Map<number, string>();
+const negTitleByRound = new Map<number, string>();
+
+for (const key of Object.keys(posGlob)) {
+  const normalized = key.replace(/\\/g, "/");
+  const name = basenameFromPath(normalized);
   const round = extractRoundNumberFromFilename(name);
-  const title = stripExt(name);
-  const arg: Argument = { title, content: raw, source: "", time: "" };
-  if (round !== null) posMap.set(round, arg);
+  if (round !== null) {
+    posKeyByRound.set(round, key);
+    posTitleByRound.set(round, stripExt(name));
+  }
 }
 
-const negMap = new Map<number, Argument>();
-for (const [path, raw] of Object.entries(negFiles)) {
-  const name = basenameFromPath(path);
+for (const key of Object.keys(negGlob)) {
+  const normalized = key.replace(/\\/g, "/");
+  const name = basenameFromPath(normalized);
   const round = extractRoundNumberFromFilename(name);
-  const title = stripExt(name);
-  const arg: Argument = { title, content: raw, source: "", time: "" };
-  if (round !== null) negMap.set(round, arg);
+  if (round !== null) {
+    negKeyByRound.set(round, key);
+    negTitleByRound.set(round, stripExt(name));
+  }
 }
 
-// 合并回合，按轮次排序
-const roundsSet = new Set<number>([...posMap.keys(), ...negMap.keys()]);
+// 先构建占位的回合列表（content 为空），在需要时按回合懒加载内容
+const roundsSet = new Set<number>([
+  ...posKeyByRound.keys(),
+  ...negKeyByRound.keys(),
+]);
 const allRounds: DebateRound[] = Array.from(roundsSet)
   .sort((a, b) => a - b)
   .map((r) => ({
     round: r,
-    positive: posMap.get(r) ?? {
-      title: `正方 第${r}轮`,
+    positive: {
+      title: posTitleByRound.get(r) ?? `正方 第${r}轮`,
       content: "",
       source: "",
       time: "",
     },
-    negative: negMap.get(r) ?? {
-      title: `反方 第${r}轮`,
+    negative: {
+      title: negTitleByRound.get(r) ?? `反方 第${r}轮`,
       content: "",
       source: "",
       time: "",
     },
   }));
 
-// 导出为可响应的 ref 以兼容现有使用（App.vue 中使用 selectedRounds.value）
 export const selectedRounds = ref<DebateRound[]>(allRounds);
 
-// 也导出一个异步加载接口（如果需要动态加载）
+// 懒加载单个回合的内容（正反两方都尝试加载）
+export async function loadRoundContent(
+  round: number,
+): Promise<DebateRound | null> {
+  const idx = selectedRounds.value.findIndex((it) => it.round === round);
+  if (idx === -1) return null;
+
+  const entry = selectedRounds.value[idx];
+
+  // 加载正方
+  const posKey = posKeyByRound.get(round);
+  if (posKey && (!entry.positive.content || entry.positive.content === "")) {
+    try {
+      const raw = await posGlob[posKey]();
+      selectedRounds.value[idx] = {
+        ...entry,
+        positive: { ...entry.positive, content: raw },
+      };
+    } catch (e) {
+      console.warn("加载正方 md 失败", posKey, e);
+    }
+  }
+
+  // 加载反方
+  const negKey = negKeyByRound.get(round);
+  if (negKey && (!entry.negative.content || entry.negative.content === "")) {
+    try {
+      const raw = await negGlob[negKey]();
+      // 可能上面已经替换了 selectedRounds.value[idx]
+      const cur =
+        selectedRounds.value.find((it) => it.round === round) || entry;
+      const merged = { ...cur, negative: { ...cur.negative, content: raw } };
+      const curIdx = selectedRounds.value.findIndex((it) => it.round === round);
+      if (curIdx !== -1) selectedRounds.value[curIdx] = merged;
+    } catch (e) {
+      console.warn("加载反方 md 失败", negKey, e);
+    }
+  }
+
+  return selectedRounds.value.find((it) => it.round === round) ?? null;
+}
+
+// 非阻塞预取回合内容
+export function prefetchRound(round: number) {
+  void loadRoundContent(round);
+}
+
+// 加载所有回合（谨慎使用）
 export async function loadAllRounds(): Promise<DebateRound[]> {
-  // 如果希望改成运行时动态加载，可在此实现
+  await Promise.all(Array.from(roundsSet).map((r) => loadRoundContent(r)));
   return selectedRounds.value;
 }

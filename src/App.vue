@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
-import { selectedRounds, debateTitle, positiveName, negativeName, totalRounds, finalConclusion } from './data/debate'
+import { ref, computed, onMounted, watch } from 'vue'
+import { selectedRounds, debateTitle, positiveName, negativeName, totalRounds, finalConclusion, loadRoundContent, prefetchRound } from './data/debate'
 import ArgumentCard from './components/ArgumentCard.vue'
 import DebateTimeline from './components/DebateTimeline.vue'
 import FinalResult from './components/FinalResult.vue'
@@ -67,7 +67,18 @@ const toggleContent = () => {
 }
 
 onMounted(() => {
-  // Cleanup on unmount
+  // 初始显示时懒加载当前回合内容并预取下一回合
+  const initialRound = selectedRounds.value[0]?.round
+  if (initialRound) loadRoundContent(initialRound)
+  const next = selectedRounds.value[1]?.round
+  if (next) prefetchRound(next)
+})
+
+watch(currentRoundIndex, (newIdx) => {
+  const round = selectedRounds.value[newIdx]?.round
+  if (round) loadRoundContent(round)
+  const next = selectedRounds.value[newIdx + 1]?.round
+  if (next) prefetchRound(next)
 })
 </script>
 
