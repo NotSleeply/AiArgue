@@ -70,16 +70,42 @@ const formatContent = (content: string): string => {
   font-weight: 500;
   line-height: 1.6;
 }
-.prose-container h1, .prose-container h2, .prose-container h3, .prose-container h4 {
+
+.prose-container h1,
+.prose-container h2,
+.prose-container h3,
+.prose-container h4 {
   font-weight: 900;
   margin-top: 1.5rem;
   margin-bottom: 0.5rem;
 }
-.prose-container h2 { font-size: 1.5rem; border-bottom: 2px solid black; padding-bottom: 0.25rem; }
-.prose-container h3 { font-size: 1.25rem; }
-.prose-container p { margin-bottom: 1rem; }
-.prose-container ul { list-style-type: disc; margin-left: 1.5rem; margin-bottom: 1rem; }
-.prose-container ol { list-style-type: decimal; margin-left: 1.5rem; margin-bottom: 1rem; }
+
+.prose-container h2 {
+  font-size: 1.5rem;
+  border-bottom: 2px solid black;
+  padding-bottom: 0.25rem;
+}
+
+.prose-container h3 {
+  font-size: 1.25rem;
+}
+
+.prose-container p {
+  margin-bottom: 1rem;
+}
+
+.prose-container ul {
+  list-style-type: disc;
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.prose-container ol {
+  list-style-type: decimal;
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
 .prose-container blockquote {
   border-left: 4px solid black;
   padding-left: 1rem;
@@ -87,22 +113,27 @@ const formatContent = (content: string): string => {
   margin-right: 0;
   font-style: italic;
 }
+
 .prose-container code {
   background: #A1F65E;
   padding: 0.125rem 0.25rem;
   border: 2px solid black;
   font-weight: 700;
 }
+
 .prose-container table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 1rem;
   border: 4px solid black;
 }
-.prose-container th, .prose-container td {
+
+.prose-container th,
+.prose-container td {
   border: 2px solid black;
   padding: 0.5rem;
 }
+
 .prose-container th {
   background: #F3F4F6;
   font-weight: 900;

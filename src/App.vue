@@ -151,14 +151,16 @@ watch(selectedRounds, (val) => {
         <div class="character left" :class="{ 'active': activeSide === 'positive' }" @click="activate('positive')">
           <svg viewBox="0 0 200 400" preserveAspectRatio="none" fill="black">
             <!-- Menacing silhouette facing right -->
-            <path d="M-50,400 L120,400 C150,350 180,300 170,250 C160,200 120,180 100,150 C80,120 70,80 90,40 C100,20 80,-10 30,-20 L-50,-20 Z"/>
+            <path
+              d="M-50,400 L120,400 C150,350 180,300 170,250 C160,200 120,180 100,150 C80,120 70,80 90,40 C100,20 80,-10 30,-20 L-50,-20 Z" />
           </svg>
         </div>
         <!-- 右侧人物（固定在边缘） -->
         <div class="character right" :class="{ 'active': activeSide === 'negative' }" @click="activate('negative')">
           <svg viewBox="0 0 200 400" preserveAspectRatio="none" fill="black">
             <!-- Menacing silhouette facing left -->
-            <path d="M250,400 L80,400 C50,350 20,300 30,250 C40,200 80,180 100,150 C120,120 130,80 110,40 C100,20 120,-10 170,-20 L250,-20 Z"/>
+            <path
+              d="M250,400 L80,400 C50,350 20,300 30,250 C40,200 80,180 100,150 C120,120 130,80 110,40 C100,20 120,-10 170,-20 L250,-20 Z" />
           </svg>
         </div>
 
@@ -249,7 +251,7 @@ watch(selectedRounds, (val) => {
   transition: transform 450ms cubic-bezier(.2, .9, .2, 1), right 450ms, left 450ms;
   z-index: 0;
   pointer-events: none;
-  filter: drop-shadow(15px 15px 0px rgba(0,0,0,0.8));
+  filter: drop-shadow(15px 15px 0px rgba(0, 0, 0, 0.8));
   opacity: 0.3;
 }
 
@@ -276,12 +278,12 @@ watch(selectedRounds, (val) => {
 
 .character.active.left {
   transform: translateX(100px) scale(1.1);
-  filter: drop-shadow(25px 25px 0px rgba(0,0,0,1));
+  filter: drop-shadow(25px 25px 0px rgba(0, 0, 0, 1));
 }
 
 .character.active.right {
   transform: translateX(-100px) scale(1.1);
-  filter: drop-shadow(-25px 25px 0px rgba(0,0,0,1));
+  filter: drop-shadow(-25px 25px 0px rgba(0, 0, 0, 1));
 }
 
 /* Flex layout logic for width management */
