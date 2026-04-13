@@ -36,7 +36,12 @@ export const finalConclusion = {
 // Helper: 去掉扩展名
 const stripExt = (name: string) => name.replace(/\.[^/.]+$/, "");
 
-// Helper: 从路径中取文件名（已移除未使用的实现）
+function extractArgumentTitleFromMarkdown(md: string): string | null {
+  const match = md.match(/^##\s*论据标题\s*[\r\n]+([^\r\n]+)/m);
+  if (match?.[1]?.trim()) return match[1].trim();
+  const headingMatch = md.match(/^#\s*([^\r\n]+)/m);
+  return headingMatch?.[1]?.trim() ?? null;
+}
 
 // 简单的中文数字（1-99）到阿拉伯数字转换，能处理类似「三十七」「十一」等
 function chineseToNumber(s: string): number {
@@ -176,7 +181,6 @@ export async function ensureManifestLoaded(): Promise<void> {
         const round = tryParseRoundFromFilename(entry);
         if (round !== null) {
           posKeyByRound.set(round, entry);
-          posTitleByRound.set(round, stripExt(entry));
           roundsSet.add(round);
         }
       } else if (typeof entry === "object") {
@@ -187,7 +191,8 @@ export async function ensureManifestLoaded(): Promise<void> {
         if (!Number.isNaN(round) && round != null) {
           const file = entry.file ?? entry.name ?? "";
           posKeyByRound.set(round, file || stripExt(String(entry.title ?? "")));
-          posTitleByRound.set(round, entry.title ?? stripExt(file || ""));
+          const title = entry.title?.toString().trim();
+          if (title) posTitleByRound.set(round, title);
           roundsSet.add(round);
         }
       }
@@ -200,7 +205,6 @@ export async function ensureManifestLoaded(): Promise<void> {
         const round = tryParseRoundFromFilename(entry);
         if (round !== null) {
           negKeyByRound.set(round, entry);
-          negTitleByRound.set(round, stripExt(entry));
           roundsSet.add(round);
         }
       } else if (typeof entry === "object") {
@@ -211,7 +215,8 @@ export async function ensureManifestLoaded(): Promise<void> {
         if (!Number.isNaN(round) && round != null) {
           const file = entry.file ?? entry.name ?? "";
           negKeyByRound.set(round, file || stripExt(String(entry.title ?? "")));
-          negTitleByRound.set(round, entry.title ?? stripExt(file || ""));
+          const title = entry.title?.toString().trim();
+          if (title) negTitleByRound.set(round, title);
           roundsSet.add(round);
         }
       }
@@ -253,6 +258,15 @@ export async function loadRoundContent(
 
   const entry = selectedRounds.value[idx];
 
+  const mergeContent = (argument: Argument, raw: string): Argument => {
+    const extractedTitle = extractArgumentTitleFromMarkdown(raw);
+    return {
+      ...argument,
+      title: extractedTitle || argument.title,
+      content: raw,
+    };
+  };
+
   // 加载正方（从 public 路径 fetch）
   const posFilename = posKeyByRound.get(round);
   if (
@@ -266,7 +280,7 @@ export async function loadRoundContent(
         const raw = await rawRes.text();
         selectedRounds.value[idx] = {
           ...entry,
-          positive: { ...entry.positive, content: raw },
+          positive: mergeContent(entry.positive, raw),
         };
       } else {
         console.warn("fetch 正方 md 失败", url, rawRes.status);
@@ -290,7 +304,7 @@ export async function loadRoundContent(
         const raw = await rawRes.text();
         const cur =
           selectedRounds.value.find((it) => it.round === round) || entry;
-        const merged = { ...cur, negative: { ...cur.negative, content: raw } };
+        const merged = { ...cur, negative: mergeContent(cur.negative, raw) };
         const curIdx = selectedRounds.value.findIndex(
           (it) => it.round === round,
         );
